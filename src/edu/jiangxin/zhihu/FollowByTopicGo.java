@@ -23,6 +23,13 @@ public class FollowByTopicGo {
 			driver.findElement(By.name("remember_me")).click();
 		}
 		driver.findElement(By.className("sign-button")).click();
+		try {
+			String imageSrc = driver.findElement(By.className("js-captcha-img")).getAttribute("src");
+			DownloadImage.download(imageSrc, "temp.gif", "./IdentifyingCode/");
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 
 		try {
 			Thread.sleep(10000);
