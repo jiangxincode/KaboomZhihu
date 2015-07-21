@@ -9,12 +9,14 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.HasInputDevices;
 
-public class FollowByTopicGo {
+public class FollowByQuestion {
 
 	public static void main(String[] args) {
 		int followCount = 0;
 		WebDriver driver = new FirefoxDriver();
 		driver.get("http://www.zhihu.com");
+		
+		driver.manage().window().maximize(); //maximize the window
 
 		driver.findElement(By.linkText("µÇÂ¼")).click();
 		driver.findElement(By.name("account")).sendKeys(args[0]);
@@ -38,27 +40,30 @@ public class FollowByTopicGo {
 			e.printStackTrace();
 		}
 
-		driver.get("http://www.zhihu.com/topic/19674381/followers");
-		List<WebElement> a = driver.findElements(By.className("zg-btn-follow"));
+		driver.get("http://www.zhihu.com/question/19644659/followers");
+		
+		List<WebElement> a = null;
+		boolean isFirstTime = true;
+		
+		while ((a == null) || isFirstTime) {
 
-		for (WebElement we : a) {
-			we.click();
-			followCount++;
-		}
-		while (true) {
-			WebElement loadMore = driver.findElement(By.id("zh-load-more"));
-			if ((loadMore != null) && (loadMore.isDisplayed())) {
-				driver.findElement(By.id("zh-load-more")).click();
-			}
-			((HasInputDevices) driver).getKeyboard().sendKeys(Keys.PAGE_DOWN);
-			a = driver.findElements(By.className("zg-btn-follow"));
 			for (WebElement we : a) {
 				we.click();
-				followCount++;
-				if(followCount == 1413) {
-					System.exit(1);
-				}
+				System.out.println(followCount++);
 			}
+			
+			a = null;
+			isFirstTime = false;
+			
+			while(a == null) {
+				WebElement loadMore = driver.findElement(By.id("zh-load-more"));
+				if ((loadMore != null) && (loadMore.isDisplayed())) {
+					driver.findElement(By.id("zh-load-more")).click();
+				}
+				((HasInputDevices) driver).getKeyboard().sendKeys(Keys.PAGE_DOWN);
+				a = driver.findElements(By.className("zg-btn-follow"));
+			}
+			
 		}
 	}
 

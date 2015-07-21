@@ -7,17 +7,13 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-public class ClearImageHelper
-{
+public class ClearImageHelper {
 
-	public static void main(String[] args) throws IOException
-	{
+	public static void main(String[] args) throws IOException {
 
-		
 		File testDataDir = new File("IdentifyingCode/tmp");
-		final String destDir = testDataDir.getAbsolutePath()+"/tmp";
-		for (File file : testDataDir.listFiles())
-		{
+		final String destDir = testDataDir.getAbsolutePath() + "/tmp";
+		for (File file : testDataDir.listFiles()) {
 			cleanImage(file, destDir);
 		}
 
@@ -25,18 +21,14 @@ public class ClearImageHelper
 
 	/**
 	 * 
-	 * @param sfile
-	 *            需要去噪的图像
-	 * @param destDir
-	 *            去噪后的图像保存地址
+	 * @param sfile 需要去噪的图像
+	 * @param destDir 去噪后的图像保存地址
 	 * @throws IOException
 	 */
 	public static void cleanImage(File sfile, String destDir)
-			throws IOException
-	{
+			throws IOException {
 		File destF = new File(destDir);
-		if (!destF.exists())
-		{
+		if (!destF.exists()) {
 			destF.mkdirs();
 		}
 
@@ -46,25 +38,20 @@ public class ClearImageHelper
 
 		// 灰度化
 		int[][] gray = new int[w][h];
-		for (int x = 0; x < w; x++)
-		{
-			for (int y = 0; y < h; y++)
-			{
+		for (int x = 0; x < w; x++) {
+			for (int y = 0; y < h; y++) {
 				int argb = bufferedImage.getRGB(x, y);
 				// 图像加亮（调整亮度识别率非常高）
 				int r = (int) (((argb >> 16) & 0xFF) * 1.1 + 30);
 				int g = (int) (((argb >> 8) & 0xFF) * 1.1 + 30);
 				int b = (int) (((argb >> 0) & 0xFF) * 1.1 + 30);
-				if (r >= 255)
-				{
+				if (r >= 255) {
 					r = 255;
 				}
-				if (g >= 255)
-				{
+				if (g >= 255) {
 					g = 255;
 				}
-				if (b >= 255)
-				{
+				if (b >= 255) {
 					b = 255;
 				}
 				gray[x][y] = (int) Math
@@ -77,15 +64,11 @@ public class ClearImageHelper
 		int threshold = ostu(gray, w, h);
 		BufferedImage binaryBufferedImage = new BufferedImage(w, h,
 				BufferedImage.TYPE_BYTE_BINARY);
-		for (int x = 0; x < w; x++)
-		{
-			for (int y = 0; y < h; y++)
-			{
-				if (gray[x][y] > threshold)
-				{
+		for (int x = 0; x < w; x++) {
+			for (int y = 0; y < h; y++) {
+				if (gray[x][y] > threshold) {
 					gray[x][y] |= 0x00FFFF;
-				} else
-				{
+				} else {
 					gray[x][y] &= 0xFF0000;
 				}
 				binaryBufferedImage.setRGB(x, y, gray[x][y]);
@@ -93,68 +76,54 @@ public class ClearImageHelper
 		}
 
 		// 矩阵打印
-		for (int y = 0; y < h; y++)
-		{
-			for (int x = 0; x < w; x++)
-			{
-				if (isBlack(binaryBufferedImage.getRGB(x, y)))
-				{
+		for (int y = 0; y < h; y++) {
+			for (int x = 0; x < w; x++) {
+				if (isBlack(binaryBufferedImage.getRGB(x, y))) {
 					System.out.print("*");
-				} else
-				{
+				} else {
 					System.out.print(" ");
 				}
 			}
 			System.out.println();
 		}
 
-		ImageIO.write(binaryBufferedImage, "jpg", new File(destDir, sfile
-				.getName()));
+		ImageIO.write(binaryBufferedImage, "jpg",
+				new File(destDir, sfile.getName()));
 	}
 
-	public static boolean isBlack(int colorInt)
-	{
+	public static boolean isBlack(int colorInt) {
 		Color color = new Color(colorInt);
-		if (color.getRed() + color.getGreen() + color.getBlue() <= 300)
-		{
+		if (color.getRed() + color.getGreen() + color.getBlue() <= 300) {
 			return true;
 		}
 		return false;
 	}
 
-	public static boolean isWhite(int colorInt)
-	{
+	public static boolean isWhite(int colorInt) {
 		Color color = new Color(colorInt);
-		if (color.getRed() + color.getGreen() + color.getBlue() > 300)
-		{
+		if (color.getRed() + color.getGreen() + color.getBlue() > 300) {
 			return true;
 		}
 		return false;
 	}
 
-	public static int isBlackOrWhite(int colorInt)
-	{
-		if (getColorBright(colorInt) < 30 || getColorBright(colorInt) > 730)
-		{
+	public static int isBlackOrWhite(int colorInt) {
+		if (getColorBright(colorInt) < 30 || getColorBright(colorInt) > 730) {
 			return 1;
 		}
 		return 0;
 	}
 
-	public static int getColorBright(int colorInt)
-	{
+	public static int getColorBright(int colorInt) {
 		Color color = new Color(colorInt);
 		return color.getRed() + color.getGreen() + color.getBlue();
 	}
 
-	public static int ostu(int[][] gray, int w, int h)
-	{
+	public static int ostu(int[][] gray, int w, int h) {
 		int[] histData = new int[w * h];
 		// Calculate histogram
-		for (int x = 0; x < w; x++)
-		{
-			for (int y = 0; y < h; y++)
-			{
+		for (int x = 0; x < w; x++) {
+			for (int y = 0; y < h; y++) {
 				int red = 0xFF & gray[x][y];
 				histData[red]++;
 			}
@@ -174,8 +143,7 @@ public class ClearImageHelper
 		float varMax = 0;
 		int threshold = 0;
 
-		for (int t = 0; t < 256; t++)
-		{
+		for (int t = 0; t < 256; t++) {
 			wB += histData[t]; // Weight Background
 			if (wB == 0)
 				continue;
@@ -193,8 +161,7 @@ public class ClearImageHelper
 			float varBetween = (float) wB * (float) wF * (mB - mF) * (mB - mF);
 
 			// Check if new maximum found
-			if (varBetween > varMax)
-			{
+			if (varBetween > varMax) {
 				varMax = varBetween;
 				threshold = t;
 			}
