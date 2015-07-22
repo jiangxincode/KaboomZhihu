@@ -29,7 +29,8 @@ public class Follow {
 		//driver.get("http://www.zhihu.com/topic/19627873/followers"); //按照话题进行关注
 		//driver.get("http://www.zhihu.com/question/19644659/followers"); //按照问题进行关注
 		//driver.get("http://www.zhihu.com/people/YenvY/followees"); //某人关注的人
-		driver.get("http://www.zhihu.com/people/YenvY/followers"); //关注某人的人
+		//driver.get("http://www.zhihu.com/people/YenvY/followers"); //关注某人的人
+		driver.get("http://www.zhihu.com/people/jiangxinnju/followees"); //我关注的人
 		
 		
 		List<WebElement> follow = driver.findElements(By.className("zg-btn-follow"));
@@ -71,8 +72,14 @@ public class Follow {
 			System.out.println(follow.size() + " " + unfollow.size() + " " + duplicate);
 		}
 		
-		for(WebElement we : follow) {
-			we.click();
+		if(args[0].equals("follow")) {
+			for(WebElement we : follow) {
+				we.click();
+			}
+		} else if(args[0].equals("unfollow")) {
+			for(WebElement we : unfollow) {
+				we.click();
+			}
 		}
 		driver.close();
 	}
