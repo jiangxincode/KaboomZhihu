@@ -24,21 +24,15 @@ public class Unfollow {
 
 		while (true) {
 			driver.get(args[2]+"/followees");
-			List<WebElement> buttons = driver.findElements(By.tagName("button"));
+			List<WebElement> buttons = driver.findElements(By.className("zg-btn-unfollow"));
 			if(buttons == null) {
-				
+				break;
 			}
 			for (WebElement we : buttons) {
-				if (we.getAttribute("class").contains("zg-btn-unfollow")) {
-					System.out.println(we.getAttribute("id"));
-					we.click();
-				}
+				we.click();
 			}
 		}
-
-		// File cookieFile = new File("cookie.txt");
-
-		// driver.close();
+		driver.close();
 
 	}
 
