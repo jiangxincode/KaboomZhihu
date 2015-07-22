@@ -11,10 +11,9 @@ public class ClearImageHelper {
 
 	public static void main(String[] args) throws IOException {
 
-		File testDataDir = new File("IdentifyingCode/tmp");
-		final String destDir = testDataDir.getAbsolutePath() + "/tmp";
+		File testDataDir = new File("./tmp/IdentifyingCode");
 		for (File file : testDataDir.listFiles()) {
-			cleanImage(file, destDir);
+			cleanImage(file, "./tmp/IdentifyingCodeAfterProcess");
 		}
 
 	}
