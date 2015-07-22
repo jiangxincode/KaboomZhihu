@@ -1,11 +1,6 @@
 package edu.jiangxin.zhihu;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.util.Date;
 import java.util.List;
-import java.util.StringTokenizer;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Cookie;
@@ -16,42 +11,21 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class FollowByTopic {
 
-	@SuppressWarnings("deprecation")
 	public static void main(String[] args) {
 
 		WebDriver driver = new FirefoxDriver();
 		driver.get("http://www.zhihu.com");
 		
 		driver.manage().window().maximize(); //maximize the window
-        try {
-            File cookieFile = new File("./tmp/Cookie/zhihu.cookie.txt");
-            FileReader fr = new FileReader(cookieFile);
-            BufferedReader bufferedReader = new BufferedReader(fr);
-            String line;
-            while((line = bufferedReader.readLine()) != null) {
-                StringTokenizer stringTokenizer = new StringTokenizer(line, ";");
-                while(stringTokenizer.hasMoreTokens()) {
-                    String name = stringTokenizer.nextToken();
-                    String value = stringTokenizer.nextToken();
-                    String domain = stringTokenizer.nextToken();
-                    String path = stringTokenizer.nextToken();
-                    Date expiry = null;
-                    String dt;
-                    if(!(dt = stringTokenizer.nextToken()).equals("null")) {
-                        expiry = new Date(dt);
-                    }
+		
+		CookieWrapper cookieWrapper = new CookieWrapper();
+		cookieWrapper.setCookieList("./tmp/Cookie/cookie.txt");
+		List<Cookie> cookieList = cookieWrapper.getCookieList();
+		for(Cookie cookie : cookieList) {
+			driver.manage().addCookie(cookie);
+		}
 
-                    boolean isSecure = new Boolean(stringTokenizer.nextToken()).booleanValue();
-                    Cookie cookie = new Cookie(name,value,domain,path,expiry,isSecure);
-                    driver.manage().addCookie(cookie);
-                }
-            }
-            bufferedReader.close();
-        }catch(Exception ex) {
-                ex.printStackTrace();
-        }
-
-		driver.get("http://www.zhihu.com/topic/19835412/followers");
+		driver.get("http://www.zhihu.com/topic/19627873/followers");
 		
 		
 		List<WebElement> follow = driver.findElements(By.className("zg-btn-follow"));

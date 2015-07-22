@@ -25,14 +25,6 @@ public class Login {
 			driver.findElement(By.name("remember_me")).click();
 		}
 		driver.findElement(By.className("sign-button")).click();
-		try {
-			String imageSrc = driver.findElement(By.className("js-captcha-img")).getAttribute("src");
-			String imageName = String.valueOf(new File("./IdentifyingCode/").listFiles().length + 1) + ".gif";
-			DownloadImage.download(imageSrc, imageName, "./IdentifyingCode/");
-		} catch (Exception e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
 
 		try {
 			Thread.sleep(10000);
@@ -41,7 +33,7 @@ public class Login {
 			e.printStackTrace();
 		}
 
-		File cookieFile = new File("zhihu.cookie.txt");
+		File cookieFile = new File("./tmp/Cookie/cookie.txt");
 		
 		driver.close();
 
