@@ -28,12 +28,20 @@ public class Login {
 			driver.findElement(By.name("remember_me")).click();
 		}
 		driver.findElement(By.className("sign-button")).click();
-
-		try {
-			Thread.sleep(10000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		
+		boolean isLogin = false;
+		while(!isLogin) {
+			
+			try {
+				driver.findElement(By.className("zg-icon-dd-logout")); //如果页面上没有该元素则抛出异常
+				isLogin = true;
+			} catch (Exception e) {
+				try {
+					Thread.sleep(3000);
+				} catch (InterruptedException e1) {
+					e1.printStackTrace();
+				}
+			}
 		}
 
 		File cookieFile = new File(configParser.cookiePath);
