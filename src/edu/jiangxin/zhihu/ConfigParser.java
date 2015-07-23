@@ -49,6 +49,10 @@ public class ConfigParser {
 				TargetConfig targetConfig = new TargetConfig();
 				targetConfig.method = ele.getElementsByTagName("method").item(0).getFirstChild().getNodeValue();
 				targetConfig.website = ele.getElementsByTagName("website").item(0).getFirstChild().getNodeValue();
+				if(ele.getElementsByTagName("number").getLength() != 0) {
+					targetConfig.operated_num = Integer.parseInt(ele.getElementsByTagName("number").item(0).getFirstChild().getNodeValue());
+				}
+				
 				this.targets.add(targetConfig);
 			}
 			

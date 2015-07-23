@@ -38,8 +38,12 @@ public class Follow {
 		//driver.get("http://www.zhihu.com/people/qu-yiming/columns/followed"); //某人关注的专栏
 		//driver.get("http://www.zhihu.com/people/qu-yiming/topics"); //某人关注的话题
 		for(int i=0; i<configParser.targets.size(); i++) {
+			String method = configParser.targets.get(i).method;
 			
 			driver.get(configParser.targets.get(i).website);
+			
+			//int followees_num = Integer.parseInt(driver.findElement(By.xpath("/html/body/div[3]/div[2]/div[1]/a[1]/strong")).getText());
+			int operated_num = 0; //已经关注或者取消关注的数目
 
 			List<WebElement> follow = driver.findElements(By.className("zg-btn-follow"));
 			List<WebElement> unfollow = driver.findElements(By.className("zg-btn-unfollow"));
@@ -54,6 +58,11 @@ public class Follow {
 			 * while(follow.size() + unfollow.size() < Integer.parseInt(followNumber)-1) { //程序执行者可能在关注者之中
 			 */
 			while(duplicate < 3) {
+				if((method.equals("follow")) && (follow.size() > configParser.targets.get(i).operated_num)) {
+					break;
+				} else if((method.equals("unfollow")) && (unfollow.size() > configParser.targets.get(i).operated_num)) {
+					break;
+				}
 				
 				WebElement loadMore;
 				
@@ -80,14 +89,22 @@ public class Follow {
 				System.out.println(follow.size() + " " + unfollow.size() + " " + duplicate);
 			}
 			
-			String method = configParser.targets.get(i).method;
+			
 			if(method.equals("follow")) {
 				for(WebElement we : follow) {
 					we.click();
+					operated_num ++;
+					if(operated_num >= configParser.targets.get(i).operated_num) {
+						break;
+					}
 				}
 			} else if(method.equals("unfollow")) {
 				for(WebElement we : unfollow) {
 					we.click();
+					operated_num ++;
+					if(operated_num >= configParser.targets.get(i).operated_num) {
+						break;
+					}
 				}
 			}
 		}
