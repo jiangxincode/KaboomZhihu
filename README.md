@@ -24,7 +24,7 @@ Some small programs of zhihu.
 
 ## TODO
 
-+ Use the xml as the configuration instead of main function's argument.
++ <strike>Use the xml as the configuration instead of main function's argument.</strike>
 + Use XPath to improve the effecience and accuracy.(Such as the <strong></strong> tag)
 + Realise the auto recognizion of verifying code.
 + Optimize the structure of project.

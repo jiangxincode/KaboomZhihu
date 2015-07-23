@@ -14,13 +14,16 @@ public class Follow {
 
 	public static void main(String[] args) {
 
+		ConfigParser configParser = new ConfigParser();
+		configParser.paser();
+		
 		WebDriver driver = new FirefoxDriver();
 		driver.get("http://www.zhihu.com");
 		
 		driver.manage().window().maximize(); //maximize the window
 		
 		CookieWrapper cookieWrapper = new CookieWrapper();
-		cookieWrapper.setCookieList("./tmp/Cookie/cookie.txt");
+		cookieWrapper.setCookieList(configParser.cookiePath);
 		List<Cookie> cookieList = cookieWrapper.getCookieList();
 		for(Cookie cookie : cookieList) {
 			driver.manage().addCookie(cookie);
@@ -30,7 +33,11 @@ public class Follow {
 		//driver.get("http://www.zhihu.com/question/19644659/followers"); //按照问题进行关注
 		//driver.get("http://www.zhihu.com/people/YenvY/followees"); //某人关注的人
 		//driver.get("http://www.zhihu.com/people/YenvY/followers"); //关注某人的人
-		driver.get("http://www.zhihu.com/people/jiangxinnju/followees"); //我关注的人
+		//driver.get("http://www.zhihu.com/people/jiangxinnju/followees"); //我关注的人
+		//driver.get("http://www.zhihu.com/people/jiangxinnju/followers"); //关注我的人
+		//driver.get("http://www.zhihu.com/people/qu-yiming/columns/followed"); //某人关注的专栏
+		//driver.get("http://www.zhihu.com/people/qu-yiming/topics"); //某人关注的话题
+		driver.get(configParser.targets.get(0).website);
 		
 		
 		List<WebElement> follow = driver.findElements(By.className("zg-btn-follow"));
@@ -72,11 +79,12 @@ public class Follow {
 			System.out.println(follow.size() + " " + unfollow.size() + " " + duplicate);
 		}
 		
-		if(args[0].equals("follow")) {
+		String method = configParser.targets.get(0).method;
+		if(method.equals("follow")) {
 			for(WebElement we : follow) {
 				we.click();
 			}
-		} else if(args[0].equals("unfollow")) {
+		} else if(method.equals("unfollow")) {
 			for(WebElement we : unfollow) {
 				we.click();
 			}

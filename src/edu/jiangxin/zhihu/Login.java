@@ -12,6 +12,9 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 public class Login {
 	public static void main(String[] args) {
 
+		ConfigParser configParser = new ConfigParser();
+		configParser.paser();
+		
 		WebDriver driver = new FirefoxDriver();
 		
 		driver.get("http://www.zhihu.com");
@@ -19,8 +22,8 @@ public class Login {
 		driver.manage().window().maximize(); //maximize the window
 
 		driver.findElement(By.linkText("µÇÂ¼")).click();
-		driver.findElement(By.name("account")).sendKeys(args[0]);
-		driver.findElement(By.name("password")).sendKeys(args[1]);
+		driver.findElement(By.name("account")).sendKeys(configParser.username);
+		driver.findElement(By.name("password")).sendKeys(configParser.password);
 		if (driver.findElement(By.name("remember_me")).isSelected()) {
 			driver.findElement(By.name("remember_me")).click();
 		}
@@ -33,7 +36,7 @@ public class Login {
 			e.printStackTrace();
 		}
 
-		File cookieFile = new File("./tmp/Cookie/cookie.txt");
+		File cookieFile = new File(configParser.cookiePath);
 		
 		driver.close();
 
