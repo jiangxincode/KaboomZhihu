@@ -35,9 +35,9 @@ Some small programs of zhihu.
 + Package the program as a single jar package.
 + Add some extra function like this:
     + If you want to unfollow some people, you can choose which kind of people you will unfollow.
-    + If you want to unfollow some people, you can give the number that you want to unfollow.
-    + You can follow all the people who have been followed by some people.
-    + You can follow all the people who have followed some topic or question.
+    + <strike>If you want to unfollow some people, you can give the number that you want to unfollow.</strike>
+    + <strike>You can follow all the people who have been followed by some people.</strike>
+    + <strike>You can follow all the people who have followed some topic or question.</strike>
 
 ## Contributing
 
