@@ -37,58 +37,61 @@ public class Follow {
 		//driver.get("http://www.zhihu.com/people/jiangxinnju/followers"); //关注我的人
 		//driver.get("http://www.zhihu.com/people/qu-yiming/columns/followed"); //某人关注的专栏
 		//driver.get("http://www.zhihu.com/people/qu-yiming/topics"); //某人关注的话题
-		driver.get(configParser.targets.get(0).website);
-		
-		
-		List<WebElement> follow = driver.findElements(By.className("zg-btn-follow"));
-		List<WebElement> unfollow = driver.findElements(By.className("zg-btn-unfollow"));
-		
-		int duplicate = 0;
-		int sum_follow_unfollow = follow.size() + unfollow.size();
-		
-		/**
-		 * 如果下拉三次滚动条，没有变化就停止循环，该方法不用定位页面上的一些参考值（这些值不太好定位，而且适应情况有限，而且对于程序执行者是否关注需要分情况讨论）
-		 * 曾经的方法是：
-		 * String followNumber = driver.findElement(By.tagName("strong")).getText(); //定位总人数
-		 * while(follow.size() + unfollow.size() < Integer.parseInt(followNumber)-1) { //程序执行者可能在关注者之中
-		 */
-		while(duplicate < 3) {
+		for(int i=0; i<configParser.targets.size(); i++) {
 			
-			WebElement loadMore;
+			driver.get(configParser.targets.get(i).website);
+
+			List<WebElement> follow = driver.findElements(By.className("zg-btn-follow"));
+			List<WebElement> unfollow = driver.findElements(By.className("zg-btn-unfollow"));
 			
-			try {
-				loadMore = driver.findElement(By.id("zh-load-more")); //如果不存在该元素会抛出异常，而不是直接返回null
-			} catch (NoSuchElementException e) {
-				loadMore = null;
+			int duplicate = 0;
+			int sum_follow_unfollow = follow.size() + unfollow.size();
+			
+			/**
+			 * 如果下拉三次滚动条，没有变化就停止循环，该方法不用定位页面上的一些参考值（这些值不太好定位，而且适应情况有限，而且对于程序执行者是否关注需要分情况讨论）
+			 * 曾经的方法是：
+			 * String followNumber = driver.findElement(By.tagName("strong")).getText(); //定位总人数
+			 * while(follow.size() + unfollow.size() < Integer.parseInt(followNumber)-1) { //程序执行者可能在关注者之中
+			 */
+			while(duplicate < 3) {
+				
+				WebElement loadMore;
+				
+				try {
+					loadMore = driver.findElement(By.id("zh-load-more")); //如果不存在该元素会抛出异常，而不是直接返回null
+				} catch (NoSuchElementException e) {
+					loadMore = null;
+				}
+				if((loadMore != null) && loadMore.isDisplayed()) {
+					loadMore.click();
+				} else {
+					String js="var q=document.documentElement.scrollTop=document.body.scrollHeight";
+					((JavascriptExecutor)driver).executeScript(js);
+					//((HasInputDevices) driver).getKeyboard().sendKeys(Keys.PAGE_DOWN); // inefficiency
+				}
+				follow = driver.findElements(By.className("zg-btn-follow"));
+				unfollow = driver.findElements(By.className("zg-btn-unfollow"));
+				if(follow.size() + unfollow.size() > sum_follow_unfollow) {
+					duplicate = 0;
+					sum_follow_unfollow = follow.size() + unfollow.size();
+				} else {
+					duplicate++;
+				}
+				System.out.println(follow.size() + " " + unfollow.size() + " " + duplicate);
 			}
-			if((loadMore != null) && loadMore.isDisplayed()) {
-				loadMore.click();
-			} else {
-				String js="var q=document.documentElement.scrollTop=document.body.scrollHeight";
-				((JavascriptExecutor)driver).executeScript(js);
-				//((HasInputDevices) driver).getKeyboard().sendKeys(Keys.PAGE_DOWN); // inefficiency
+			
+			String method = configParser.targets.get(i).method;
+			if(method.equals("follow")) {
+				for(WebElement we : follow) {
+					we.click();
+				}
+			} else if(method.equals("unfollow")) {
+				for(WebElement we : unfollow) {
+					we.click();
+				}
 			}
-			follow = driver.findElements(By.className("zg-btn-follow"));
-			unfollow = driver.findElements(By.className("zg-btn-unfollow"));
-			if(follow.size() + unfollow.size() > sum_follow_unfollow) {
-				duplicate = 0;
-				sum_follow_unfollow = follow.size() + unfollow.size();
-			} else {
-				duplicate++;
-			}
-			System.out.println(follow.size() + " " + unfollow.size() + " " + duplicate);
 		}
 		
-		String method = configParser.targets.get(0).method;
-		if(method.equals("follow")) {
-			for(WebElement we : follow) {
-				we.click();
-			}
-		} else if(method.equals("unfollow")) {
-			for(WebElement we : unfollow) {
-				we.click();
-			}
-		}
 		driver.close();
 	}
 
