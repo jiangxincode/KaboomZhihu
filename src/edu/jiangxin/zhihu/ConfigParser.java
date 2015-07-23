@@ -48,7 +48,7 @@ public class ConfigParser {
 				ele = (Element) nl.item(i);
 				TargetConfig targetConfig = new TargetConfig();
 				targetConfig.method = ele.getElementsByTagName("method").item(0).getFirstChild().getNodeValue();
-				targetConfig.website = ele.getElementsByTagName("website").item(0).getFirstChild().getNodeValue();
+				targetConfig.url = ele.getElementsByTagName("url").item(0).getFirstChild().getNodeValue();
 				if(ele.getElementsByTagName("number").getLength() != 0) {
 					targetConfig.operated_num = Integer.parseInt(ele.getElementsByTagName("number").item(0).getFirstChild().getNodeValue());
 				}
@@ -69,7 +69,7 @@ public class ConfigParser {
 		System.out.println(configParser.username);
 		System.out.println(configParser.password);
 		System.out.println(configParser.targets.get(0).method);
-		System.out.println(configParser.targets.get(0).website);
+		System.out.println(configParser.targets.get(0).url);
 		
 	}
 

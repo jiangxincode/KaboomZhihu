@@ -40,7 +40,7 @@ public class Follow {
 		for(int i=0; i<configParser.targets.size(); i++) {
 			String method = configParser.targets.get(i).method;
 			
-			driver.get(configParser.targets.get(i).website);
+			driver.get(configParser.targets.get(i).url);
 			
 			//int followees_num = Integer.parseInt(driver.findElement(By.xpath("/html/body/div[3]/div[2]/div[1]/a[1]/strong")).getText());
 			int operated_num = 0; //已经关注或者取消关注的数目
