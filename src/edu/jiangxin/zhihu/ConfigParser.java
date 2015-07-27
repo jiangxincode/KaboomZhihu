@@ -12,13 +12,17 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
-
+/**
+ * 配置解析器
+ * @author Aloys
+ * 
+ */
 public class ConfigParser {
 	
-	String cookiePath;
-	String username;
-	String password;
-	List<TargetConfig> targets;
+	String cookiePath; //Cookie信息保存路径
+	String username; //用户名
+	String password; //密码
+	List<TargetConfig> targets; //任务列表
 	
 	public ConfigParser() {
 		targets = new ArrayList<TargetConfig>();
@@ -51,6 +55,9 @@ public class ConfigParser {
 				targetConfig.url = ele.getElementsByTagName("url").item(0).getFirstChild().getNodeValue();
 				if(ele.getElementsByTagName("number").getLength() != 0) {
 					targetConfig.operated_num = Integer.parseInt(ele.getElementsByTagName("number").item(0).getFirstChild().getNodeValue());
+				}
+				if(ele.getElementsByTagName("shutdown").getLength() != 0) {
+					targetConfig.shutdown = Boolean.parseBoolean(ele.getElementsByTagName("shutdown").item(0).getFirstChild().getNodeValue());
 				}
 				
 				this.targets.add(targetConfig);

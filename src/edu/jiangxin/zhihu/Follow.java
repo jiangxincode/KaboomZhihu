@@ -1,5 +1,6 @@
 package edu.jiangxin.zhihu;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.openqa.selenium.By;
@@ -105,6 +106,17 @@ public class Follow {
 					if(operated_num >= configParser.targets.get(i).operated_num) {
 						break;
 					}
+				}
+			}
+			
+			if(configParser.targets.get(i).shutdown) {
+				
+				try {
+					//Runtime.getRuntime().exit(1);
+					Runtime.getRuntime().exec("shutdown -s");
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}
 			}
 		}

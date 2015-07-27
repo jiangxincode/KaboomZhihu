@@ -25,6 +25,7 @@ Some small programs of zhihu.
 ## TODO
 
 + <strike>Use the xml as the configuration instead of main function's argument.</strike>
++ <strike>Add the responsive xml dtd file.</strike>
 + <strike>Use XPath to improve the effecience and accuracy.(Such as the <strong></strong> tag)</strike>
 + Realise the auto recognizion of verifying code.
 + Optimize the structure of project.
@@ -32,6 +33,7 @@ Some small programs of zhihu.
 + Add log system for some information produced on the process of running.
 + Use the maven to reconstruct the project.
 + Add some unit test.
++ <strike>Add the feature that you can shutdown automatic when the task is finished.</strike>
 + Package the program as a single jar package.
 + Add some extra function like this:
     + If you want to unfollow some people, you can choose which kind of people you will unfollow.

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!ELEMENT config (cookie,user,targets)>
+
+<!ELEMENT cookie (path)>
+<!ELEMENT user (username,password)>
+<!ELEMENT targets (target+)>
+
+<!ELEMENT path (#PCDATA)>
+
+<!ELEMENT username (#PCDATA)>
+<!ELEMENT password (#PCDATA)>
+
+<!ELEMENT target (method,url,number?,shutdown?)>
+
+<!ELEMENT method (#PCDATA)>
+<!ELEMENT url (#PCDATA)>
+<!ELEMENT number (#PCDATA)>
+<!ELEMENT shutdown (#PCDATA)>
