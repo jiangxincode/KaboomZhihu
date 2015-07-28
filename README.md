@@ -26,7 +26,7 @@ Some small programs of zhihu.
 
 + <strike>Use the xml as the configuration instead of main function's argument.</strike>
 + <strike>Add the responsive xml dtd file.</strike>
-+ <strike>Use XPath to improve the effecience and accuracy.(Such as the <strong></strong> tag)</strike>
++ <strike>Use XPath to improve the effecience and accuracy.(Such as the "strong" tag)</strike>
 + Realise the auto recognizion of verifying code.
 + Optimize the structure of project.
 + Write some important comment.
