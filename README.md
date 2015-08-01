@@ -1,4 +1,4 @@
-# Application Name
+# KaboomZhihu
 
 ## Authors
 
@@ -19,27 +19,33 @@ Some small programs of zhihu.
 
 ## UpdateInfo
 
++ Use the xml as the configuration instead of main function's argument.
++ Add the responsive xml dtd file.
++ Use XPath to improve the effecience and accuracy.(Such as the "strong" tag)
++ Add the feature that you can shutdown automatic when the task is finished.
++ Add some extra function like this:
+    + If you want to unfollow some people, you can give the number that you want to unfollow.
+    + You can follow all the people who have been followed by some people.
+    + You can follow all the people who have followed some topic or question.
+
 ## Snapshot
 
 
 ## TODO
 
-+ <strike>Use the xml as the configuration instead of main function's argument.</strike>
-+ <strike>Add the responsive xml dtd file.</strike>
-+ <strike>Use XPath to improve the effecience and accuracy.(Such as the "strong" tag)</strike>
+
 + Realise the auto recognizion of verifying code.
++ Fix the bug that the actual operator number is always less than the required number.
 + Optimize the structure of project.
 + Write some important comment.
 + Add log system for some information produced on the process of running.
 + Use the maven to reconstruct the project.
 + Add some unit test.
-+ <strike>Add the feature that you can shutdown automatic when the task is finished.</strike>
 + Package the program as a single jar package.
 + Add some extra function like this:
     + If you want to unfollow some people, you can choose which kind of people you will unfollow.
-    + <strike>If you want to unfollow some people, you can give the number that you want to unfollow.</strike>
-    + <strike>You can follow all the people who have been followed by some people.</strike>
-    + <strike>You can follow all the people who have followed some topic or question.</strike>
++ Use the schema to replace the dtd file.
++ Add the function of crawler.
 
 ## Contributing
 

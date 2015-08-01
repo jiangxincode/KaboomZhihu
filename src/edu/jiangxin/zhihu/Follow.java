@@ -49,6 +49,8 @@ public class Follow {
 			List<WebElement> follow = driver.findElements(By.className("zg-btn-follow"));
 			List<WebElement> unfollow = driver.findElements(By.className("zg-btn-unfollow"));
 			
+			//https://bitbucket.org/snippets/jiangxincode/Ro6XE
+			
 			int duplicate = 0;
 			int sum_follow_unfollow = follow.size() + unfollow.size();
 			
@@ -58,7 +60,7 @@ public class Follow {
 			 * String followNumber = driver.findElement(By.tagName("strong")).getText(); //定位总人数
 			 * while(follow.size() + unfollow.size() < Integer.parseInt(followNumber)-1) { //程序执行者可能在关注者之中
 			 */
-			while(duplicate < 3) {
+			while(duplicate < 5) {
 				if((method.equals("follow")) && (follow.size() > configParser.targets.get(i).operated_num)) {
 					break;
 				} else if((method.equals("unfollow")) && (unfollow.size() > configParser.targets.get(i).operated_num)) {
@@ -77,6 +79,12 @@ public class Follow {
 				} else {
 					String js="var q=document.documentElement.scrollTop=document.body.scrollHeight";
 					((JavascriptExecutor)driver).executeScript(js);
+					try {
+						Thread.sleep(1000); //防止加载过慢
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} 
 					//((HasInputDevices) driver).getKeyboard().sendKeys(Keys.PAGE_DOWN); // inefficiency
 				}
 				follow = driver.findElements(By.className("zg-btn-follow"));

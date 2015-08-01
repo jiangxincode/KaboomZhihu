@@ -20,25 +20,26 @@ public class ClearImageHelper {
 
 	/**
 	 * 
-	 * @param sfile 需要去噪的图像
-	 * @param destDir 去噪后的图像保存地址
+	 * @param sfile
+	 *            需要去噪的图像
+	 * @param destDir
+	 *            去噪后的图像保存地址
 	 * @throws IOException
 	 */
-	public static void cleanImage(File sfile, String destDir)
-			throws IOException {
+	public static void cleanImage(File sfile, String destDir) throws IOException {
 		File destF = new File(destDir);
 		if (!destF.exists()) {
 			destF.mkdirs();
 		}
 
 		BufferedImage bufferedImage = ImageIO.read(sfile);
-		int h = bufferedImage.getHeight();
-		int w = bufferedImage.getWidth();
+		int height = bufferedImage.getHeight();
+		int width = bufferedImage.getWidth();
 
 		// 灰度化
-		int[][] gray = new int[w][h];
-		for (int x = 0; x < w; x++) {
-			for (int y = 0; y < h; y++) {
+		int[][] gray = new int[width][height];
+		for (int x = 0; x < width; x++) {
+			for (int y = 0; y < height; y++) {
 				int argb = bufferedImage.getRGB(x, y);
 				// 图像加亮（调整亮度识别率非常高）
 				int r = (int) (((argb >> 16) & 0xFF) * 1.1 + 30);
@@ -53,18 +54,16 @@ public class ClearImageHelper {
 				if (b >= 255) {
 					b = 255;
 				}
-				gray[x][y] = (int) Math
-						.pow((Math.pow(r, 2.2) * 0.2973 + Math.pow(g, 2.2)
-								* 0.6274 + Math.pow(b, 2.2) * 0.0753), 1 / 2.2);
+				gray[x][y] = (int) Math.pow(
+						(Math.pow(r, 2.2) * 0.2973 + Math.pow(g, 2.2) * 0.6274 + Math.pow(b, 2.2) * 0.0753), 1 / 2.2);
 			}
 		}
 
 		// 二值化
-		int threshold = ostu(gray, w, h);
-		BufferedImage binaryBufferedImage = new BufferedImage(w, h,
-				BufferedImage.TYPE_BYTE_BINARY);
-		for (int x = 0; x < w; x++) {
-			for (int y = 0; y < h; y++) {
+		int threshold = ostu(gray, width, height);
+		BufferedImage binaryBufferedImage = new BufferedImage(width, height, BufferedImage.TYPE_BYTE_BINARY);
+		for (int x = 0; x < width; x++) {
+			for (int y = 0; y < height; y++) {
 				if (gray[x][y] > threshold) {
 					gray[x][y] |= 0x00FFFF;
 				} else {
@@ -75,8 +74,8 @@ public class ClearImageHelper {
 		}
 
 		// 矩阵打印
-		for (int y = 0; y < h; y++) {
-			for (int x = 0; x < w; x++) {
+		for (int y = 0; y < height; y++) {
+			for (int x = 0; x < width; x++) {
 				if (isBlack(binaryBufferedImage.getRGB(x, y))) {
 					System.out.print("*");
 				} else {
@@ -86,8 +85,7 @@ public class ClearImageHelper {
 			System.out.println();
 		}
 
-		ImageIO.write(binaryBufferedImage, "jpg",
-				new File(destDir, sfile.getName()));
+		ImageIO.write(binaryBufferedImage, "jpg", new File(destDir, sfile.getName()));
 	}
 
 	public static boolean isBlack(int colorInt) {

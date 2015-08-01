@@ -9,11 +9,6 @@ import java.net.URLConnection;
 
 
 public class DownloadImage {
-
-	public static void main(String[] args) throws Exception {
-		// TODO Auto-generated method stub
-		 download("http://ui.51bi.com/opt/siteimg/images/fanbei0923/Mid_07.jpg", "51bi.gif","c:\\image\\");
-	}
 	
 	public static void download(String urlString, String filename,String savePath) throws Exception {
 	    // ππ‘ÏURL
