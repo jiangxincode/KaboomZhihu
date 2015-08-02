@@ -24,13 +24,19 @@ public class ConfigParser {
 	String password; //密码
 	List<TargetConfig> targets; //任务列表
 	
+	String configPath;
+	
 	public ConfigParser() {
 		targets = new ArrayList<TargetConfig>();
+	}
+	public ConfigParser(String configPath) {
+		targets = new ArrayList<TargetConfig>();
+		this.configPath = configPath;
 	}
 	
 	public void paser() {
 		try {
-			InputStream in = new FileInputStream("config.xml");
+			InputStream in = new FileInputStream(configPath);
 			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder builder = factory.newDocumentBuilder();
 			Document doc = builder.parse(in);
@@ -58,6 +64,23 @@ public class ConfigParser {
 				}
 				if(ele.getElementsByTagName("shutdown").getLength() != 0) {
 					targetConfig.shutdown = Boolean.parseBoolean(ele.getElementsByTagName("shutdown").item(0).getFirstChild().getNodeValue());
+				}
+				
+				String url = targetConfig.url;
+				if(url.matches("http://www.zhihu.com/topic/[0-9]+/followers")) {
+					targetConfig.kind = Kind.SOMETOPIC_FOLLOWERS;
+				} else if(url.matches("http://www.zhihu.com/question/[0-9]+/followers")) {
+					targetConfig.kind = Kind.SOMEQUESTION_FOLLOWERS;
+				} else if(url.matches("http://www.zhihu.com/people/[0-9a-zA-z\\-]+/followees")) {
+					targetConfig.kind = Kind.SOMEPEOPLE_FOLLOWEES;
+				} else if(url.matches("http://www.zhihu.com/people/[0-9a-zA-z\\-]+/followers")) {
+					targetConfig.kind = Kind.SOMEPEOPLE_FOLLOWERS;
+				} else if(url.matches("http://www.zhihu.com/people/[0-9a-zA-z\\-]+/columns/followed")) {
+					targetConfig.kind = Kind.SOMEPEOPLE_COLUMNS;
+				} else if(url.matches("http://www.zhihu.com/people/[0-9a-zA-z\\-]+/topics")) {
+					targetConfig.kind = Kind.SOMEPEOPLE_TOPICS;
+				} else {
+					targetConfig.kind = Kind.UNKNOWN;
 				}
 				
 				this.targets.add(targetConfig);

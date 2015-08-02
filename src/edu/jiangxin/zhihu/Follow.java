@@ -30,14 +30,7 @@ public class Follow {
 			driver.manage().addCookie(cookie);
 		}
 
-		//driver.get("http://www.zhihu.com/topic/19627873/followers"); //按照话题进行关注
-		//driver.get("http://www.zhihu.com/question/19644659/followers"); //按照问题进行关注
-		//driver.get("http://www.zhihu.com/people/YenvY/followees"); //某人关注的人
-		//driver.get("http://www.zhihu.com/people/YenvY/followers"); //关注某人的人
-		//driver.get("http://www.zhihu.com/people/jiangxinnju/followees"); //我关注的人
-		//driver.get("http://www.zhihu.com/people/jiangxinnju/followers"); //关注我的人
-		//driver.get("http://www.zhihu.com/people/qu-yiming/columns/followed"); //某人关注的专栏
-		//driver.get("http://www.zhihu.com/people/qu-yiming/topics"); //某人关注的话题
+		
 		for(int i=0; i<configParser.targets.size(); i++) {
 			String method = configParser.targets.get(i).method;
 			

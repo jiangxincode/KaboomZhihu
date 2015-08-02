@@ -1,6 +1,6 @@
 # KaboomZhihu
 
-## Authors
+## Authors and Contributors
 
 + JiangXin jiangxinnju@163.com
 
@@ -27,6 +27,7 @@ Some small programs of zhihu.
     + If you want to unfollow some people, you can give the number that you want to unfollow.
     + You can follow all the people who have been followed by some people.
     + You can follow all the people who have followed some topic or question.
++ Add some unit test.
 
 ## Snapshot
 
@@ -40,7 +41,6 @@ Some small programs of zhihu.
 + Write some important comment.
 + Add log system for some information produced on the process of running.
 + Use the maven to reconstruct the project.
-+ Add some unit test.
 + Package the program as a single jar package.
 + Add some extra function like this:
     + If you want to unfollow some people, you can choose which kind of people you will unfollow.
