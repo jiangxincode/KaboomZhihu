@@ -6,7 +6,7 @@
 
 ## Description
 
-Some small programs of zhihu.
+Some small programs of Zhihu.
 
 ## Installation
 
@@ -27,8 +27,9 @@ Some small programs of zhihu.
     + If you want to unfollow some people, you can give the number that you want to unfollow.
     + You can follow all the people who have been followed by some people.
     + You can follow all the people who have followed some topic or question.
-+ Add some unit test.
-+ Add log system for some information produced on the process of running.
++ Add some unit test. [20150802]
++ Add log system for some information produced on the process of running. [20150802]
++ Optimize the structure of project. [20150802]
 
 ## Snapshot
 
@@ -38,7 +39,6 @@ Some small programs of zhihu.
 
 + Realise the auto recognizion of verifying code.
 + Fix the bug that the actual operator number is always less than the required number.
-+ Optimize the structure of project.
 + Write some important comment.
 + Use the maven to reconstruct the project.
 + Package the program as a single jar package.

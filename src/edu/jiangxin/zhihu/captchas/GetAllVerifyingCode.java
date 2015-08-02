@@ -1,4 +1,4 @@
-package edu.jiangxin.zhihu;
+package edu.jiangxin.zhihu.captchas;
 
 import java.io.File;
 import org.openqa.selenium.By;

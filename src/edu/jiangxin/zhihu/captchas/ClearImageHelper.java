@@ -1,4 +1,4 @@
-package edu.jiangxin.zhihu;
+package edu.jiangxin.zhihu.captchas;
 
 import java.awt.Color;
 import java.awt.image.BufferedImage;

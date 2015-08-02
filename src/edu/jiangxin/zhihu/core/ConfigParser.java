@@ -1,4 +1,4 @@
-package edu.jiangxin.zhihu;
+package edu.jiangxin.zhihu.core;
 
 import java.io.FileInputStream;
 import java.io.InputStream;

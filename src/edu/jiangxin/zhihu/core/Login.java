@@ -1,4 +1,4 @@
-package edu.jiangxin.zhihu;
+package edu.jiangxin.zhihu.core;
 
 import java.io.BufferedWriter;
 import java.io.File;

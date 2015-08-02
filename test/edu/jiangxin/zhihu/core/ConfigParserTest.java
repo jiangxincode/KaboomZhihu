@@ -1,9 +1,12 @@
-package edu.jiangxin.zhihu;
+package edu.jiangxin.zhihu.core;
 
 import static org.junit.Assert.*;
 
 import org.junit.Before;
 import org.junit.Test;
+
+import edu.jiangxin.zhihu.core.ConfigParser;
+import edu.jiangxin.zhihu.core.Kind;
 
 public class ConfigParserTest {
 	
