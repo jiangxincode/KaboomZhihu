@@ -3,6 +3,8 @@ package edu.jiangxin.zhihu;
 import java.io.IOException;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+import org.apache.log4j.xml.DOMConfigurator;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Cookie;
 import org.openqa.selenium.JavascriptExecutor;
@@ -17,6 +19,9 @@ public class Follow {
 
 		ConfigParser configParser = new ConfigParser();
 		configParser.paser();
+		
+		Logger logger = Logger.getRootLogger();
+		DOMConfigurator.configure("log4j.xml");
 		
 		WebDriver driver = new FirefoxDriver();
 		driver.get("http://www.zhihu.com");
@@ -88,7 +93,7 @@ public class Follow {
 				} else {
 					duplicate++;
 				}
-				System.out.println(follow.size() + " " + unfollow.size() + " " + duplicate);
+				logger.warn("[Follow:" + follow.size() + "] " + "[Unfollow:" + unfollow.size() + "] " + "[Duplicate:" + duplicate + "]");
 			}
 			
 			

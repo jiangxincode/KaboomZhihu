@@ -28,6 +28,7 @@ Some small programs of zhihu.
     + You can follow all the people who have been followed by some people.
     + You can follow all the people who have followed some topic or question.
 + Add some unit test.
++ Add log system for some information produced on the process of running.
 
 ## Snapshot
 
@@ -39,7 +40,6 @@ Some small programs of zhihu.
 + Fix the bug that the actual operator number is always less than the required number.
 + Optimize the structure of project.
 + Write some important comment.
-+ Add log system for some information produced on the process of running.
 + Use the maven to reconstruct the project.
 + Package the program as a single jar package.
 + Add some extra function like this:

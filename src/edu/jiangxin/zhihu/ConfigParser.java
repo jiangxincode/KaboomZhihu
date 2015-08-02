@@ -24,7 +24,7 @@ public class ConfigParser {
 	String password; //密码
 	List<TargetConfig> targets; //任务列表
 	
-	String configPath;
+	String configPath = null;
 	
 	public ConfigParser() {
 		targets = new ArrayList<TargetConfig>();
@@ -36,6 +36,9 @@ public class ConfigParser {
 	
 	public void paser() {
 		try {
+			if(configPath == null) {
+				configPath = "config.xml";
+			}
 			InputStream in = new FileInputStream(configPath);
 			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder builder = factory.newDocumentBuilder();
