@@ -4,7 +4,7 @@ import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-
+import java.util.Arrays;
 import javax.imageio.ImageIO;
 
 public class ClearImageHelper {
@@ -13,9 +13,14 @@ public class ClearImageHelper {
 
 		File testDataDir = new File("./tmp/IdentifyingCode");
 		for (File file : testDataDir.listFiles()) {
-			cleanImage(file, "./tmp/IdentifyingCodeAfterProcess");
+			cleanImage(file, "./tmp/IdentifyingCode01");
 		}
-
+		
+		for(int i=1;i<100;i++) {
+			File srcFile = new File("./tmp/IdentifyingCode01/" + i + ".jpg");
+			File desFile = new File("./tmp/IdentifyingCode01/" + (i+1) + ".jpg");
+			enhance1(srcFile, desFile);
+		}
 	}
 
 	/**
@@ -65,9 +70,11 @@ public class ClearImageHelper {
 		for (int x = 0; x < width; x++) {
 			for (int y = 0; y < height; y++) {
 				if (gray[x][y] > threshold) {
-					gray[x][y] |= 0x00FFFF;
+					//gray[x][y] |= 0x00FFFF;
+					gray[x][y] = 0xFFFFFF;
 				} else {
-					gray[x][y] &= 0xFF0000;
+					//gray[x][y] &= 0xFF0000;
+					gray[x][y] = 0x000000;
 				}
 				binaryBufferedImage.setRGB(x, y, gray[x][y]);
 			}
@@ -84,8 +91,72 @@ public class ClearImageHelper {
 			}
 			System.out.println();
 		}
-
-		ImageIO.write(binaryBufferedImage, "jpg", new File(destDir, sfile.getName()));
+		
+		String sfile_without_suffix = sfile.getName().replaceFirst("gif", "jpg");
+		File desFile = new File(sfile_without_suffix);
+		if(desFile.exists()) {
+			desFile.delete();
+		}
+		ImageIO.write(binaryBufferedImage, "jpg", new File(destDir, sfile_without_suffix));
+	}
+	
+	public static void enhance(File sfile, String desDir) throws IOException {
+		
+		File desFile = new File(desDir);
+		if(!desFile.exists()) {
+			desFile.mkdirs();
+		}
+		BufferedImage bufferedImage = ImageIO.read(sfile);
+		int height = bufferedImage.getHeight();
+		int width = bufferedImage.getWidth();
+		
+		int[] xx = new int[]{1, 0, -1, 0, 1, -1, 1, -1};
+		int[] yy = new int[]{0, 1, 0, -1, -1, 1, 1, -1};
+		
+		int[] mid = new int[8];
+		
+		for(int i=0;i<width;i++) {
+			for(int j=0;j<height;j++) {
+				for(int k=0;k<8;k++) {
+					if((i+xx[k]>=0) && (i+xx[k]<width) && (j+yy[k]>=0) && (j+yy[k]<height)) {
+						mid[k] = bufferedImage.getRGB(i, j);
+					}
+				}
+				Arrays.sort(mid);
+				bufferedImage.setRGB(i, j, mid[3]);
+			}
+		}
+		desFile = new File(desDir, sfile.getName());
+		if(desFile.exists()) {
+			desFile.delete();
+		}
+		ImageIO.write(bufferedImage, "jpg", desFile);
+	}
+	
+public static void enhance1(File sfile, File desFile) throws IOException {
+		
+		BufferedImage bufferedImage = ImageIO.read(sfile);
+		int height = bufferedImage.getHeight();
+		int width = bufferedImage.getWidth();
+		
+		int[] xx = new int[]{-2,-1,0,1,2,-2,-1,0,1,2,-2,-1,0,1,2,-2,-1,0,1,2,-2,-1,0,1,2};
+		int[] yy = new int[]{2,2,2,2,2,1,1,1,1,1,0,0,0,0,0,-1,-1,-1,-1,-1,-2,-2,-2,-2,-2};
+		
+		int[] mid = new int[25];
+		
+		for(int i=0;i<width;i++) {
+			for(int j=0;j<height;j++) {
+				for(int k=0;k<25;k++) {
+					if((i+xx[k]>=0) && (i+xx[k]<width) && (j+yy[k]>=0) && (j+yy[k]<height)) {
+						mid[k] = bufferedImage.getRGB(i, j);
+					}
+				}
+				Arrays.sort(mid);
+				bufferedImage.setRGB(i, j, mid[12]);
+			}
+		}
+		
+		ImageIO.write(bufferedImage, "jpg", desFile);
 	}
 
 	public static boolean isBlack(int colorInt) {
