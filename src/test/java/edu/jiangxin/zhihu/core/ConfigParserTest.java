@@ -14,7 +14,7 @@ public class ConfigParserTest {
 
 	@Before
 	public void setUp() {
-		configParser = new ConfigParser("resource/ConfigParserTest.xml");
+		configParser = new ConfigParser("target/test-classes/ConfigParserTest.xml");
 		configParser.paser();
 	}
 	

@@ -1,6 +1,5 @@
-target/
 .settings/
-src/main/resources/config.xml
-src/main/resources/cookie.txt
-src/main/resources/IdentifyingCode/
+target/
+tmp/
+config.xml
 *.swp
