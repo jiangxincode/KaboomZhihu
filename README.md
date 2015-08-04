@@ -30,6 +30,7 @@ Some small programs of Zhihu.
 + Add some unit test. [20150802]
 + Add log system for some information produced on the process of running. [20150802]
 + Optimize the structure of project. [20150802]
++ Use the maven to reconstruct the project. [20150804]
 
 ## Snapshot
 
@@ -40,7 +41,6 @@ Some small programs of Zhihu.
 + Realise the auto recognizion of verifying code.
 + Fix the bug that the actual operator number is always less than the required number.
 + Write some important comment.
-+ Use the maven to reconstruct the project.
 + Package the program as a single jar package.
 + Add some extra function like this:
     + If you want to unfollow some people, you can choose which kind of people you will unfollow.
