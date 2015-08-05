@@ -31,6 +31,7 @@ Some small programs of Zhihu.
 + Add log system for some information produced on the process of running. [20150802]
 + Optimize the structure of project. [20150802]
 + Use the maven to reconstruct the project. [20150804]
++ Unify the character encoding of all files to GBK. [20150805]
 
 ## Snapshot
 
