@@ -4,6 +4,11 @@
   <artifactId>KaboomZhihu</artifactId>
   <version>0.0.1-SNAPSHOT</version>
 
+  <properties>
+    <project.build.sourceEncoding>
+        GBK
+    </project.build.sourceEncoding>
+  </properties>
   <dependencies>
     <dependency>
         <groupId>log4j</groupId>
@@ -26,6 +31,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.3</version>
         <configuration>
           <source>1.7</source>
           <target>1.7</target>

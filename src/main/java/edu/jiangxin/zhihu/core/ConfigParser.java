@@ -94,18 +94,5 @@ public class ConfigParser {
 			e.printStackTrace();
 		}
 	}
-	
-	public static void main(String[] args) {
-		ConfigParser configParser = new ConfigParser();
-		configParser.paser();
-		System.out.println(configParser.cookiePath);
-		//System.out.println(configParser.username);
-		//System.out.println(configParser.password);
-		System.out.println(configParser.targets.get(0).method);
-		System.out.println(configParser.targets.get(0).url);
-		System.out.println(configParser.targets.get(0).operated_num);
-		System.out.println(configParser.targets.get(0).shutdown);
-		
-	}
 
 }
