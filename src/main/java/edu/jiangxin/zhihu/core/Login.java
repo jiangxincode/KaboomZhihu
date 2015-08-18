@@ -49,8 +49,16 @@ public class Login {
 		driver.close();
 
         try {
-            cookieFile.delete();
-            cookieFile.createNewFile();
+            if(cookieFile.exists()) {
+            	cookieFile.delete();
+            } else {
+            	File parent = cookieFile.getParentFile();
+            	if(!parent.exists()) {
+            		parent.mkdirs();
+            	}
+            	cookieFile.createNewFile();
+            }
+            
             FileWriter fileWriter = new FileWriter(cookieFile);
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
 

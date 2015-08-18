@@ -47,6 +47,8 @@ Some small programs of Zhihu.
 + Add some extra function like this:
     + If you want to unfollow some people, you can choose which kind of people you will unfollow.
 + Use the schema to replace the dtd file.
++ Solve the problem of uncorrect cookie setting in httpclient.
++ Use multithreading in the crawler.
 
 ## Contributing
 

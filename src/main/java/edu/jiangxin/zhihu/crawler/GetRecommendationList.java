@@ -25,7 +25,7 @@ public class GetRecommendationList {
 		if (getRealUrl(url)) {
 
 			// 获取推荐内容详细页面
-			String content = Spider.SendGet(zhihuUrl);
+			String content = GetUrlContent.getContent(zhihuUrl);
 			if (content != null) {
 				Document doc = Jsoup.parse(content);
 				// 获取标题，即用户发布的问题
