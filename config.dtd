@@ -11,7 +11,7 @@
 <!ELEMENT username (#PCDATA)>
 <!ELEMENT password (#PCDATA)>
 
-<!ELEMENT target (method,url,number?,shutdown?)>
+<!ELEMENT target (method,url?,number?,shutdown?,path?)>
 
 <!ELEMENT method (#PCDATA)>
 <!ELEMENT url (#PCDATA)>

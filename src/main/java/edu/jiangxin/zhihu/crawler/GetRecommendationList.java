@@ -9,48 +9,48 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-public class Zhihu {
+public class GetRecommendationList {
 	public String question;// 问题
 	public String questionDescription;// 问题描述
 	public String zhihuUrl;// 链接地址
 	public ArrayList<String> answers;// 回答
 
 	// 获取知乎内容
-	public Zhihu(String url) {
+	public GetRecommendationList(String url) {
 		question = "";
 		questionDescription = "";
 		zhihuUrl = "";
 		answers = new ArrayList<String>();
 
 		if (getRealUrl(url)) {
-			
+
 			// 获取推荐内容详细页面
 			String content = Spider.SendGet(zhihuUrl);
-			if(content != null){
+			if (content != null) {
 				Document doc = Jsoup.parse(content);
 				// 获取标题，即用户发布的问题
 				question = doc.title();
-				
+
 				// 问题消息标书
 				Element despElement = doc.getElementById("zh-question-detail");
-				if(despElement != null){
+				if (despElement != null) {
 					questionDescription = despElement.text();
 				}
 				// 解答
 				Elements ansItems = doc.getElementsByClass("zm-item-answer");
-				for(Element ansItem:ansItems){
+				for (Element ansItem : ansItems) {
 					Element textElement = ansItem.getElementsByClass("zm-item-rich-text").first();
-					if(despElement != null){
+					if (despElement != null) {
 						answers.add(textElement.text());
 					}
 				}
-			}else{
+			} else {
 				System.out.println("content is null");
 			}
 		}
 	}
 
-	// 
+	//
 	boolean getRealUrl(String url) {
 		// 将http://www.zhihu.com/question/22355264/answer/21102139
 		// 转换为http://www.zhihu.com/question/22355264
@@ -90,4 +90,3 @@ public class Zhihu {
 		return result;
 	}
 }
-

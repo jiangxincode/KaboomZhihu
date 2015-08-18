@@ -18,11 +18,11 @@ import org.w3c.dom.NodeList;
  * 
  */
 public class ConfigParser {
-	
-	String cookiePath; //Cookie信息保存路径
-	String username; //用户名
-	String password; //密码
-	List<TargetConfig> targets; //任务列表
+
+	public String cookiePath; //Cookie信息保存路径
+	public String username; //用户名
+	public String password; //密码
+	public List<TargetConfig> targets; //任务列表
 	
 	String configPath = null;
 	
@@ -61,7 +61,12 @@ public class ConfigParser {
 				ele = (Element) nl.item(i);
 				TargetConfig targetConfig = new TargetConfig();
 				targetConfig.method = ele.getElementsByTagName("method").item(0).getFirstChild().getNodeValue();
-				targetConfig.url = ele.getElementsByTagName("url").item(0).getFirstChild().getNodeValue();
+				if(ele.getElementsByTagName("url").getLength() != 0) {
+					targetConfig.url = ele.getElementsByTagName("url").item(0).getFirstChild().getNodeValue();
+				}
+				if(ele.getElementsByTagName("path").getLength() != 0) {
+					targetConfig.path = ele.getElementsByTagName("path").item(0).getFirstChild().getNodeValue();
+				}
 				if(ele.getElementsByTagName("number").getLength() != 0) {
 					targetConfig.operated_num = Integer.parseInt(ele.getElementsByTagName("number").item(0).getFirstChild().getNodeValue());
 				}
@@ -70,7 +75,9 @@ public class ConfigParser {
 				}
 				
 				String url = targetConfig.url;
-				if(url.matches("http://www.zhihu.com/topic/[0-9]+/followers")) {
+				if(url == null) {
+					targetConfig.kind = Kind.UNKNOWN;
+				} else if(url.matches("http://www.zhihu.com/topic/[0-9]+/followers")) {
 					targetConfig.kind = Kind.SOMETOPIC_FOLLOWERS;
 				} else if(url.matches("http://www.zhihu.com/question/[0-9]+/followers")) {
 					targetConfig.kind = Kind.SOMEQUESTION_FOLLOWERS;

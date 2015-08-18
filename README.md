@@ -32,6 +32,7 @@ Some small programs of Zhihu.
 + Optimize the structure of project. [20150802]
 + Use the maven to reconstruct the project. [20150804]
 + Unify the character encoding of all files to GBK. [20150805]
++ Add the function of crawler. [20150818]
 
 ## Snapshot
 
@@ -46,7 +47,6 @@ Some small programs of Zhihu.
 + Add some extra function like this:
     + If you want to unfollow some people, you can choose which kind of people you will unfollow.
 + Use the schema to replace the dtd file.
-+ Add the function of crawler.
 
 ## Contributing
 

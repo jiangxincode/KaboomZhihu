@@ -23,6 +23,7 @@ public class FileReaderWriter {
 	public static String ReadFromFile(String filePath, String keyWord) {
 		StringBuffer stringBuffer = null;
 		File file = new File(filePath);
+		
 		if (file.exists()) {
 			stringBuffer = new StringBuffer();
 			FileReader fileReader = null;
@@ -79,20 +80,18 @@ public class FileReaderWriter {
 	 */
 	public static boolean writeIntoFile(String content, String filePath, boolean isAppend) {
 		boolean isSuccess = true;
-		// 先过滤掉文件名
-		int index = filePath.lastIndexOf("/");
-		String dir = filePath.substring(0, index);
-		// 创建除文件的路径
-		File fileDir = new File(dir);
-		fileDir.mkdirs();
-		// 再创建路径下的文件
-		File file = null;
-		try {
-			file = new File(filePath);
-			file.createNewFile();
-		} catch (IOException e) {
-			isSuccess = false;
-			e.printStackTrace();
+		
+		File file = new File(filePath);
+		if(!file.exists()) {
+			try {
+				File parent = file.getParentFile();
+				if(!parent.exists()) {
+					parent.mkdirs();
+				}
+				file.createNewFile();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 		// 写入文件
 		FileWriter fileWriter = null;
