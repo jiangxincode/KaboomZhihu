@@ -38,6 +38,9 @@ public class Follow {
 		
 		for(int i=0; i<configParser.targets.size(); i++) {
 			String method = configParser.targets.get(i).method;
+			if((!method.equals("follow")) && (!method.equals("unfollow"))) {
+				continue;
+			}
 			
 			driver.get(configParser.targets.get(i).url);
 			
