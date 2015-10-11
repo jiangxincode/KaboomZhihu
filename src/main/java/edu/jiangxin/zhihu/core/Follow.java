@@ -83,7 +83,6 @@ public class Follow {
 					try {
 						Thread.sleep(1000); //·ÀÖ¹¼ÓÔØ¹ýÂý
 					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					} 
 					//((HasInputDevices) driver).getKeyboard().sendKeys(Keys.PAGE_DOWN); // inefficiency
@@ -124,7 +123,6 @@ public class Follow {
 					//Runtime.getRuntime().exit(1);
 					Runtime.getRuntime().exec("shutdown -s");
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}

@@ -34,7 +34,6 @@ public class GetUrlContent {
 		try {
 			fr = new FileReader(cookieFile);
 		} catch (FileNotFoundException e2) {
-			// TODO Auto-generated catch block
 			e2.printStackTrace();
 		}
         BufferedReader bufferedReader = new BufferedReader(fr);
@@ -64,13 +63,11 @@ public class GetUrlContent {
 			    }
 			}
 		} catch (IOException e2) {
-			// TODO Auto-generated catch block
 			e2.printStackTrace();
 		}
         try {
 			bufferedReader.close();
 		} catch (IOException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 
