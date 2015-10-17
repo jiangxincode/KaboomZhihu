@@ -1,6 +1,6 @@
 /**
- * ÃèÊö£ºÖ÷ÒªÊı¾İ½á¹¹µÄÀà¶¨Òå
- * ×÷Õß£º½¯öÎ
+ * æè¿°ï¼šä¸»è¦æ•°æ®ç»“æ„çš„ç±»å®šä¹‰
+ * ä½œè€…ï¼šè’‹é‘«
  **/
 package edu.jiangxin.zhihu.crawler;
 
@@ -11,50 +11,50 @@ import java.util.Queue;
 
 public class LinkQueue {
 
-	// ÒÑ·ÃÎÊµÄ url ¼¯ºÏ£¬Ö®ËùÒÔÉèÎªSet£¬ÊÇÒª±£Ö¤ÆäËù°üº¬µÄÔªËØ²»ÖØ¸´
+	// å·²è®¿é—®çš„ url é›†åˆï¼Œä¹‹æ‰€ä»¥è®¾ä¸ºSetï¼Œæ˜¯è¦ä¿è¯å…¶æ‰€åŒ…å«çš„å…ƒç´ ä¸é‡å¤
 	private static Set<String> visitedUrl = new HashSet<String>();
-	// ´ı·ÃÎÊµÄ url ¼¯ºÏ
+	// å¾…è®¿é—®çš„ url é›†åˆ
 	private static Queue<String> unVisitedUrl = new PriorityQueue<String>();
 
-	// Ìí¼Óµ½·ÃÎÊ¹ıµÄURL¶ÓÁĞÖĞ
+	// æ·»åŠ åˆ°è®¿é—®è¿‡çš„URLé˜Ÿåˆ—ä¸­
 	public static void addVisitedUrl(String url) {
 		visitedUrl.add(url);
-		System.out.println("ÏÖÔÚvisitedUrl¼¯ºÏÖĞ¹²ÓĞ£º" + LinkQueue.getVisitedUrlNum() + "¸öÔªËØ"); // not
+		System.out.println("ç°åœ¨visitedUrlé›†åˆä¸­å…±æœ‰ï¼š" + LinkQueue.getVisitedUrlNum() + "ä¸ªå…ƒç´ "); // not
 																							// very
 																							// bad
 	}
 
-	// ÒÆ³ı·ÃÎÊ¹ıµÄURL
+	// ç§»é™¤è®¿é—®è¿‡çš„URL
 	public static void removeVisitedUrl(String url) {
 		visitedUrl.remove(url);
 	}
 
-	// »ñµÃÒÑ¾­·ÃÎÊµÄURLÊıÄ¿
+	// è·å¾—å·²ç»è®¿é—®çš„URLæ•°ç›®
 	public static int getVisitedUrlNum() {
 		return visitedUrl.size();
 	}
 
-	// »ñµÃURL¶ÓÁĞ
+	// è·å¾—URLé˜Ÿåˆ—
 	public static Queue<String> getUnVisitedUrl() {
 		return unVisitedUrl;
 	}
 
-	// Î´·ÃÎÊµÄURL³ö¶ÓÁĞ
+	// æœªè®¿é—®çš„URLå‡ºé˜Ÿåˆ—
 	public static Object unVisitedUrlDeQueue() {
 		String visitUrl = null;
 		visitUrl = unVisitedUrl.poll();
-		System.out.println(visitUrl + "Àë¿ªunVisitedUrl¶ÓÁĞ"); // bad
+		System.out.println(visitUrl + "ç¦»å¼€unVisitedUrlé˜Ÿåˆ—"); // bad
 
 		return visitUrl;
 	}
 
-	// ±£Ö¤Ã¿¸ö url Ö»±»·ÃÎÊÒ»´Î
+	// ä¿è¯æ¯ä¸ª url åªè¢«è®¿é—®ä¸€æ¬¡
 	public static void addUnvisitedUrl(String url) {
 
 		if (url != null && !url.trim().equals("") && !visitedUrl.contains(url) && !unVisitedUrl.contains(url)) {
 			unVisitedUrl.add(url);
-			System.out.println(url + "½øÈëunVisitedUrl¶ÓÁĞ"); // not very bad
-			System.out.println("ÏÖÔÚunVisitedUrl¶ÓÁĞÖĞ¹²ÓĞ:" + LinkQueue.getUnVisitedUrlNum() + "¸öÔªËØ"); // not
+			System.out.println(url + "è¿›å…¥unVisitedUrlé˜Ÿåˆ—"); // not very bad
+			System.out.println("ç°åœ¨unVisitedUrlé˜Ÿåˆ—ä¸­å…±æœ‰:" + LinkQueue.getUnVisitedUrlNum() + "ä¸ªå…ƒç´ "); // not
 																									// very
 																									// bad
 
@@ -66,7 +66,7 @@ public class LinkQueue {
 		return unVisitedUrl.size();
 	}
 
-	// ÅĞ¶ÏÎ´·ÃÎÊµÄURL¶ÓÁĞÖĞÊÇ·ñÎª¿Õ
+	// åˆ¤æ–­æœªè®¿é—®çš„URLé˜Ÿåˆ—ä¸­æ˜¯å¦ä¸ºç©º
 	public static boolean unVisitedUrlsEmpty() {
 		return unVisitedUrl.isEmpty();
 	}

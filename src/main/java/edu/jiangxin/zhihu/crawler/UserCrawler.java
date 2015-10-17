@@ -20,7 +20,7 @@ public class UserCrawler {
 				LinkQueue.addUnvisitedUrl("http://www.zhihu.com/people/jiangxinnju/followers");
 
 				while (!LinkQueue.unVisitedUrlsEmpty()) {
-					// ¶ÓÍ·URL³ö¶ÓÁÐ
+					// é˜Ÿå¤´URLå‡ºé˜Ÿåˆ—
 					String visitUrl = (String) LinkQueue.unVisitedUrlDeQueue();
 					String content = GetUrlContent.getContent(visitUrl);
 					System.out.println(content);
@@ -31,7 +31,7 @@ public class UserCrawler {
 						System.out.println(href);
 						LinkQueue.addUnvisitedUrl(href + "/followers");
 					}
-					LinkQueue.addVisitedUrl(visitUrl); // ¸Ã url ·ÅÈëµ½ÒÑ·ÃÎÊµÄ URL ÖÐ
+					LinkQueue.addVisitedUrl(visitUrl); // è¯¥ url æ”¾å…¥åˆ°å·²è®¿é—®çš„ URL ä¸­
 				}
 			}
 

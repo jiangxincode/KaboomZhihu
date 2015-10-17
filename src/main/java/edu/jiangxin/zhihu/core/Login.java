@@ -21,7 +21,7 @@ public class Login {
 		
 		driver.manage().window().maximize(); //maximize the window
 
-		driver.findElement(By.linkText("µÇÂ¼")).click();
+		driver.findElement(By.linkText("ç™»å½•")).click();
 		driver.findElement(By.name("account")).sendKeys(configParser.username);
 		driver.findElement(By.name("password")).sendKeys(configParser.password);
 		if (driver.findElement(By.name("remember_me")).isSelected()) {
@@ -33,7 +33,7 @@ public class Login {
 		while(!isLogin) {
 			
 			try {
-				driver.findElement(By.className("zg-icon-dd-logout")); //Èç¹ûÒ³ÃæÉÏÃ»ÓĞ¸ÃÔªËØÔòÅ×³öÒì³£
+				driver.findElement(By.className("zg-icon-dd-logout")); //å¦‚æœé¡µé¢ä¸Šæ²¡æœ‰è¯¥å…ƒç´ åˆ™æŠ›å‡ºå¼‚å¸¸
 				isLogin = true;
 			} catch (Exception e) {
 				try {

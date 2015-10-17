@@ -18,14 +18,14 @@ public class ConfigParserTest {
 		configParser.paser();
 	}
 	
-	//http://www.zhihu.com/topic/19627873/followers //°´ÕÕ»°Ìâ½øĞĞ¹Ø×¢
-	//http://www.zhihu.com/question/19644659/followers //°´ÕÕÎÊÌâ½øĞĞ¹Ø×¢
-	//http://www.zhihu.com/people/YenvY/followees //Ä³ÈË¹Ø×¢µÄÈË
-	//http://www.zhihu.com/people/YenvY/followers //¹Ø×¢Ä³ÈËµÄÈË
-	//http://www.zhihu.com/people/jiangxinnju/followees //ÎÒ¹Ø×¢µÄÈË
-	//http://www.zhihu.com/people/jiangxinnju/followers //¹Ø×¢ÎÒµÄÈË
-	//http://www.zhihu.com/people/qu-yiming/columns/followed //Ä³ÈË¹Ø×¢µÄ×¨À¸
-	//http://www.zhihu.com/people/qu-yiming/topics //Ä³ÈË¹Ø×¢µÄ»°Ìâ
+	//http://www.zhihu.com/topic/19627873/followers //æŒ‰ç…§è¯é¢˜è¿›è¡Œå…³æ³¨
+	//http://www.zhihu.com/question/19644659/followers //æŒ‰ç…§é—®é¢˜è¿›è¡Œå…³æ³¨
+	//http://www.zhihu.com/people/YenvY/followees //æŸäººå…³æ³¨çš„äºº
+	//http://www.zhihu.com/people/YenvY/followers //å…³æ³¨æŸäººçš„äºº
+	//http://www.zhihu.com/people/jiangxinnju/followees //æˆ‘å…³æ³¨çš„äºº
+	//http://www.zhihu.com/people/jiangxinnju/followers //å…³æ³¨æˆ‘çš„äºº
+	//http://www.zhihu.com/people/qu-yiming/columns/followed //æŸäººå…³æ³¨çš„ä¸“æ 
+	//http://www.zhihu.com/people/qu-yiming/topics //æŸäººå…³æ³¨çš„è¯é¢˜
 	
 	
 	@Test

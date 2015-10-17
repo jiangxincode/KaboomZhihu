@@ -11,30 +11,30 @@ import java.net.URLConnection;
 public class DownloadImage {
 	
 	public static void download(String urlString, String filename,String savePath) throws Exception {
-	    // ¹¹ÔìURL
+	    // æ„é€ URL
 	    URL url = new URL(urlString);
-	    // ´ò¿ªÁ¬½Ó
+	    // æ‰“å¼€è¿æ¥
 	    URLConnection con = url.openConnection();
-	    //ÉèÖÃÇëÇó³¬Ê±Îª5s
+	    //è®¾ç½®è¯·æ±‚è¶…æ—¶ä¸º5s
 	    con.setConnectTimeout(5*1000);
-	    // ÊäÈëÁ÷
+	    // è¾“å…¥æµ
 	    InputStream is = con.getInputStream();
 	
-	    // 1KµÄÊı¾İ»º³å
+	    // 1Kçš„æ•°æ®ç¼“å†²
 	    byte[] bs = new byte[1024];
-	    // ¶ÁÈ¡µ½µÄÊı¾İ³¤¶È
+	    // è¯»å–åˆ°çš„æ•°æ®é•¿åº¦
 	    int len;
-	    // Êä³öµÄÎÄ¼şÁ÷
+	    // è¾“å‡ºçš„æ–‡ä»¶æµ
 	   File sf=new File(savePath);
 	   if(!sf.exists()){
 		   sf.mkdirs();
 	   }
 	   OutputStream os = new FileOutputStream(sf.getPath()+"\\"+filename);
-	    // ¿ªÊ¼¶ÁÈ¡
+	    // å¼€å§‹è¯»å–
 	    while ((len = is.read(bs)) != -1) {
 	      os.write(bs, 0, len);
 	    }
-	    // Íê±Ï£¬¹Ø±ÕËùÓĞÁ´½Ó
+	    // å®Œæ¯•ï¼Œå…³é—­æ‰€æœ‰é“¾æ¥
 	    os.close();
 	    is.close();
 	} 

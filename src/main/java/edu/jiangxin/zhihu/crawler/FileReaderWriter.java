@@ -10,15 +10,15 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /** 
- * ±¾µØÎÄ¼şµÄ¶ÁĞ´²Ù×÷·â×°Àà 
+ * æœ¬åœ°æ–‡ä»¶çš„è¯»å†™æ“ä½œå°è£…ç±» 
  */
 public class FileReaderWriter {
 	/** 
 	 * @param filePath 
-	 *            ÎÄ¼şÂ·¾¶µÄ×Ö·û´®±íÊ¾ĞÎÊ½ 
+	 *            æ–‡ä»¶è·¯å¾„çš„å­—ç¬¦ä¸²è¡¨ç¤ºå½¢å¼ 
 	 * @param keyWord 
-	 *            ²éÕÒ°üº¬Ä³¸ö¹Ø¼ü×ÖµÄĞÅÏ¢£º·ÇnullÎª´ø¹Ø¼ü×Ö²éÑ¯£»nullÎªÈ«ÎÄÏÔÊ¾ 
-	 * @return µ±ÎÄ¼ş´æÔÚÊ±£¬·µ»Ø×Ö·û´®£»µ±ÎÄ¼ş²»´æÔÚÊ±£¬·µ»Ønull 
+	 *            æŸ¥æ‰¾åŒ…å«æŸä¸ªå…³é”®å­—çš„ä¿¡æ¯ï¼šénullä¸ºå¸¦å…³é”®å­—æŸ¥è¯¢ï¼›nullä¸ºå…¨æ–‡æ˜¾ç¤º 
+	 * @return å½“æ–‡ä»¶å­˜åœ¨æ—¶ï¼Œè¿”å›å­—ç¬¦ä¸²ï¼›å½“æ–‡ä»¶ä¸å­˜åœ¨æ—¶ï¼Œè¿”å›null 
 	 */
 	public static String ReadFromFile(String filePath, String keyWord) {
 		StringBuffer stringBuffer = null;
@@ -69,14 +69,14 @@ public class FileReaderWriter {
 	}
 
 	/** 
-	 * ½«Ö¸¶¨×Ö·û´®Ğ´ÈëÎÄ¼ş¡£Èç¹û¸ø¶¨µÄÎÄ¼şÂ·¾¶²»´æÔÚ£¬½«ĞÂ½¨ÎÄ¼şºóĞ´Èë¡£ 
+	 * å°†æŒ‡å®šå­—ç¬¦ä¸²å†™å…¥æ–‡ä»¶ã€‚å¦‚æœç»™å®šçš„æ–‡ä»¶è·¯å¾„ä¸å­˜åœ¨ï¼Œå°†æ–°å»ºæ–‡ä»¶åå†™å…¥ã€‚ 
 	 *  
 	 * @param content 
-	 *            ÒªĞ´ÈëÎÄ¼şµÄÄÚÈİ 
+	 *            è¦å†™å…¥æ–‡ä»¶çš„å†…å®¹ 
 	 * @param filePath 
-	 *            ÎÄ¼şÂ·¾¶µÄ×Ö·û´®±íÊ¾ĞÎÊ½£¬Ä¿Â¼µÄ²ã´Î·Ö¸ô¿ÉÒÔÊÇ¡°/¡±Ò²¿ÉÒÔÊÇ¡°\\¡± 
+	 *            æ–‡ä»¶è·¯å¾„çš„å­—ç¬¦ä¸²è¡¨ç¤ºå½¢å¼ï¼Œç›®å½•çš„å±‚æ¬¡åˆ†éš”å¯ä»¥æ˜¯â€œ/â€ä¹Ÿå¯ä»¥æ˜¯â€œ\\â€ 
 	 * @param isAppend 
-	 *            true£º×·¼Óµ½ÎÄ¼şµÄÄ©Î²£¬false£ºÒÔ¸²¸ÇÔ­ÎÄ¼şµÄ·½Ê½Ğ´Èë 
+	 *            trueï¼šè¿½åŠ åˆ°æ–‡ä»¶çš„æœ«å°¾ï¼Œfalseï¼šä»¥è¦†ç›–åŸæ–‡ä»¶çš„æ–¹å¼å†™å…¥ 
 	 */
 	public static boolean writeIntoFile(String content, String filePath, boolean isAppend) {
 		boolean isSuccess = true;
@@ -93,7 +93,7 @@ public class FileReaderWriter {
 				e.printStackTrace();
 			}
 		}
-		// Ğ´ÈëÎÄ¼ş
+		// å†™å…¥æ–‡ä»¶
 		FileWriter fileWriter = null;
 		try {
 			fileWriter = new FileWriter(file, isAppend);
@@ -115,12 +115,12 @@ public class FileReaderWriter {
 	}
 
 	/** 
-	 * »ñÈ¡µ±Ç°Ê±¼ä£¬ÓÃÓÚÎÄ¼şÃüÃû 
+	 * è·å–å½“å‰æ—¶é—´ï¼Œç”¨äºæ–‡ä»¶å‘½å 
 	 *  
 	 * @param format 
-	 *            yyyy ±íÊ¾4Î»Äê£¬ MM ±íÊ¾2Î»ÔÂ£¬ dd ±íÊ¾2Î»ÈÕ£¬hhĞ¡Ê±£¬mm·ÖÖÓ¡£ 
+	 *            yyyy è¡¨ç¤º4ä½å¹´ï¼Œ MM è¡¨ç¤º2ä½æœˆï¼Œ dd è¡¨ç¤º2ä½æ—¥ï¼Œhhå°æ—¶ï¼Œmmåˆ†é’Ÿã€‚ 
 	 *  
-	 * @return true:´´½¨³É¹¦£¬false´´½¨²»³É¹¦ 
+	 * @return true:åˆ›å»ºæˆåŠŸï¼Œfalseåˆ›å»ºä¸æˆåŠŸ 
 	 */
 	public static String getNowTime(String format) {
 		SimpleDateFormat formatter = new SimpleDateFormat(format);
@@ -128,24 +128,24 @@ public class FileReaderWriter {
 	}
 
 	/** 
-	 * ´´½¨ÎÄ¼ş£¬Èç¹û¸ÃÎÄ¼şÒÑ´æÔÚ½«²»ÔÙ´´½¨£¨¼´²»ÆğÈÎºÎ×÷ÓÃ£© 
+	 * åˆ›å»ºæ–‡ä»¶ï¼Œå¦‚æœè¯¥æ–‡ä»¶å·²å­˜åœ¨å°†ä¸å†åˆ›å»ºï¼ˆå³ä¸èµ·ä»»ä½•ä½œç”¨ï¼‰ 
 	 *  
 	 * @param filePath 
-	 *            Òª´´½¨ÎÄ¼şµÄÂ·¾¶µÄ×Ö·û´®±íÊ¾ĞÎÊ½£¬Ä¿Â¼µÄ²ã´Î·Ö¸ô¿ÉÒÔÊÇ¡°/¡±Ò²¿ÉÒÔÊÇ¡°\\¡± 
+	 *            è¦åˆ›å»ºæ–‡ä»¶çš„è·¯å¾„çš„å­—ç¬¦ä¸²è¡¨ç¤ºå½¢å¼ï¼Œç›®å½•çš„å±‚æ¬¡åˆ†éš”å¯ä»¥æ˜¯â€œ/â€ä¹Ÿå¯ä»¥æ˜¯â€œ\\â€ 
 	 *  
-	 * @return true:´´½¨³É¹¦£¬false´´½¨²»³É¹¦ 
+	 * @return true:åˆ›å»ºæˆåŠŸï¼Œfalseåˆ›å»ºä¸æˆåŠŸ 
 	 */
 	public static boolean createNewFile(String filePath) {
 		boolean isSuccess = true;
-		// ÈçÓĞÔò½«"\\"×ªÎª"/",Ã»ÓĞÔò²»²úÉúÈÎºÎ±ä»¯
+		// å¦‚æœ‰åˆ™å°†"\\"è½¬ä¸º"/",æ²¡æœ‰åˆ™ä¸äº§ç”Ÿä»»ä½•å˜åŒ–
 		String filePathTurn = filePath.replaceAll("\\\\", "/");
-		// ÏÈ¹ıÂËµôÎÄ¼şÃû
+		// å…ˆè¿‡æ»¤æ‰æ–‡ä»¶å
 		int index = filePathTurn.lastIndexOf("/");
 		String dir = filePathTurn.substring(0, index);
-		// ÔÙ´´½¨ÎÄ¼ş¼Ğ
+		// å†åˆ›å»ºæ–‡ä»¶å¤¹
 		File fileDir = new File(dir);
 		isSuccess = fileDir.mkdirs();
-		// ´´½¨ÎÄ¼ş
+		// åˆ›å»ºæ–‡ä»¶
 		File file = new File(filePathTurn);
 		try {
 			isSuccess = file.createNewFile();

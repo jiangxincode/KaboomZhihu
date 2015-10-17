@@ -25,13 +25,13 @@ public class HttpClientTest {
  
     public static void main(String[] args)
     {
-        //´´½¨Ò»¸öHttpClient
+        //åˆ›å»ºä¸€ä¸ªHttpClient
         RequestConfig requestConfig = RequestConfig.custom().setCookieSpec(CookieSpecs.STANDARD_STRICT).build();
         CloseableHttpClient httpClient = HttpClients.custom().setDefaultRequestConfig(requestConfig).build();
         try {
-            //´´½¨Ò»¸ögetÇëÇóÓÃÀ´½ÓÊÕ_xsrfĞÅÏ¢
+            //åˆ›å»ºä¸€ä¸ªgetè¯·æ±‚ç”¨æ¥æ¥æ”¶_xsrfä¿¡æ¯
         HttpGet get = new HttpGet("http://www.zhihu.com/");
-            //»ñÈ¡_xsrf
+            //è·å–_xsrf
             CloseableHttpResponse response = httpClient.execute(get,new BasicHttpContext());
             setCookie(response);
             String responseHtml = EntityUtils.toString(response.getEntity());
@@ -39,7 +39,7 @@ public class HttpClientTest {
             System.out.println("xsrfValue:" + xsrfValue);
             response.close();
              
-            //¹¹ÔìpostÊı¾İ
+            //æ„é€ postæ•°æ®
             List<NameValuePair> valuePairs = new LinkedList<NameValuePair>();
             valuePairs.add(new BasicNameValuePair("_xsrf", xsrfValue));
             valuePairs.add(new BasicNameValuePair("email", "jiangxinnju@163.com"));
@@ -47,21 +47,21 @@ public class HttpClientTest {
             valuePairs.add(new BasicNameValuePair("remember_me", "true"));
             UrlEncodedFormEntity entity = new UrlEncodedFormEntity(valuePairs, Consts.UTF_8);
              
-            //´´½¨Ò»¸öpostÇëÇó
+            //åˆ›å»ºä¸€ä¸ªpostè¯·æ±‚
             HttpPost post = new HttpPost("http://www.zhihu.com/login/email");
             post.setHeader("Cookie", " cap_id=\"YjA5MjE0YzYyNGQ2NDY5NWJhMmFhN2YyY2EwODIwZjQ=|1437610072|e7cc307c0d2fe2ee84fd3ceb7f83d298156e37e0\"; ");
  
-            //×¢ÈëpostÊı¾İ
+            //æ³¨å…¥postæ•°æ®
             post.setEntity(entity);
             HttpResponse httpResponse = httpClient.execute(post);
-            //´òÓ¡µÇÂ¼ÊÇ·ñ³É¹¦ĞÅÏ¢
+            //æ‰“å°ç™»å½•æ˜¯å¦æˆåŠŸä¿¡æ¯
             printResponse(httpResponse);
  
-            //¹¹ÔìÒ»¸ögetÇëÇó£¬ÓÃÀ´²âÊÔµÇÂ¼cookieÊÇ·ñÄÃµ½
+            //æ„é€ ä¸€ä¸ªgetè¯·æ±‚ï¼Œç”¨æ¥æµ‹è¯•ç™»å½•cookieæ˜¯å¦æ‹¿åˆ°
             HttpGet g = new HttpGet("http://www.zhihu.com/question/followers");
-            //µÃµ½postÇëÇó·µ»ØµÄcookieĞÅÏ¢
+            //å¾—åˆ°postè¯·æ±‚è¿”å›çš„cookieä¿¡æ¯
             String c = setCookie(httpResponse);
-            //½«cookie×¢Èëµ½getÇëÇóÍ·µ±ÖĞ
+            //å°†cookieæ³¨å…¥åˆ°getè¯·æ±‚å¤´å½“ä¸­
             g.setHeader("Cookie",c);
             CloseableHttpResponse r = httpClient.execute(g);
             String content = EntityUtils.toString(r.getEntity());
@@ -80,16 +80,16 @@ public class HttpClientTest {
  
     public static void printResponse(HttpResponse httpResponse)
             throws ParseException, IOException {
-        // »ñÈ¡ÏìÓ¦ÏûÏ¢ÊµÌå
+        // è·å–å“åº”æ¶ˆæ¯å®ä½“
         HttpEntity entity = httpResponse.getEntity();
-        // ÏìÓ¦×´Ì¬
+        // å“åº”çŠ¶æ€
         System.out.println("status:" + httpResponse.getStatusLine());
         System.out.println("headers:");
         HeaderIterator iterator = httpResponse.headerIterator();
         while (iterator.hasNext()) {
             System.out.println("\t" + iterator.next());
         }
-        // ÅĞ¶ÏÏìÓ¦ÊµÌåÊÇ·ñÎª¿Õ
+        // åˆ¤æ–­å“åº”å®ä½“æ˜¯å¦ä¸ºç©º
         if (entity != null) {
             String responseString = EntityUtils.toString(entity);
             System.out.println("response length:" + responseString.length());
@@ -99,7 +99,7 @@ public class HttpClientTest {
     }
  
     public static Map<String,String> cookieMap = new HashMap<String, String>(64);
-    //´ÓÏìÓ¦ĞÅÏ¢ÖĞ»ñÈ¡cookie
+    //ä»å“åº”ä¿¡æ¯ä¸­è·å–cookie
     public static String setCookie(HttpResponse httpResponse)
     {
         System.out.println("----setCookieStore");

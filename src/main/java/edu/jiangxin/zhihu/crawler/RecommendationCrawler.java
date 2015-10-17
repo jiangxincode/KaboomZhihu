@@ -11,15 +11,15 @@ import edu.jiangxin.zhihu.core.ConfigParser;
 
 public class RecommendationCrawler {
 
-	// 获取推荐内容详细内容url
+	// 鑾峰彇鎺ㄨ崘鍐呭璇︾粏鍐呭url
 	public static ArrayList<GetRecommendationList> GetRecommendations(String content) {
 
 		ArrayList<GetRecommendationList> results = new ArrayList<GetRecommendationList>();
 		Document doc = Jsoup.parse(content);
-		Elements items = doc.getElementsByClass("zm-item"); // 推荐内容元素
+		Elements items = doc.getElementsByClass("zm-item"); // 鎺ㄨ崘鍐呭鍏冪礌
 		for (Element item : items) {
-			String href = item.getElementsByTag("h2").first().getElementsByTag("a").first().attr("href"); // 推荐内容url
-			if (href.contains("question")) { // 去除不规范url
+			String href = item.getElementsByTag("h2").first().getElementsByTag("a").first().attr("href"); // 鎺ㄨ崘鍐呭url
+			if (href.contains("question")) { // 鍘婚櫎涓嶈鑼僽rl
 				results.add(new GetRecommendationList(href));
 			}
 		}
@@ -33,9 +33,9 @@ public class RecommendationCrawler {
 		for (int i = 0; i < configParser.targets.size(); i++) {
 			if (configParser.targets.get(i).method.equals("recommendations")) {
 				String savePath = configParser.targets.get(i).path;
-				String content = GetUrlContent.getContent("http://www.zhihu.com/explore/recommendations"); // 获取知乎推荐首页
-				ArrayList<GetRecommendationList> list = RecommendationCrawler.GetRecommendations(content); // 获取推荐内容详细内容
-				for (GetRecommendationList zhihu : list) { // 写入文档
+				String content = GetUrlContent.getContent("http://www.zhihu.com/explore/recommendations"); // 鑾峰彇鐭ヤ箮鎺ㄨ崘棣栭〉
+				ArrayList<GetRecommendationList> list = RecommendationCrawler.GetRecommendations(content); // 鑾峰彇鎺ㄨ崘鍐呭璇︾粏鍐呭
+				for (GetRecommendationList zhihu : list) { // 鍐欏叆鏂囨。
 					
 					FileReaderWriter.writeIntoFile(zhihu.writeString(), savePath, true);
 				}

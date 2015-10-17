@@ -45,7 +45,7 @@ public class Follow {
 			driver.get(configParser.targets.get(i).url);
 			
 			//int followees_num = Integer.parseInt(driver.findElement(By.xpath("/html/body/div[3]/div[2]/div[1]/a[1]/strong")).getText());
-			int operated_num = 0; //ÒÑ¾­¹Ø×¢»òÕßÈ¡Ïû¹Ø×¢µÄÊıÄ¿
+			int operated_num = 0; //å·²ç»å…³æ³¨æˆ–è€…å–æ¶ˆå…³æ³¨çš„æ•°ç›®
 
 			List<WebElement> follow = driver.findElements(By.className("zg-btn-follow"));
 			List<WebElement> unfollow = driver.findElements(By.className("zg-btn-unfollow"));
@@ -56,10 +56,10 @@ public class Follow {
 			int sum_follow_unfollow = follow.size() + unfollow.size();
 			
 			/**
-			 * Èç¹ûÏÂÀ­Èı´Î¹ö¶¯Ìõ£¬Ã»ÓĞ±ä»¯¾ÍÍ£Ö¹Ñ­»·£¬¸Ã·½·¨²»ÓÃ¶¨Î»Ò³ÃæÉÏµÄÒ»Ğ©²Î¿¼Öµ£¨ÕâĞ©Öµ²»Ì«ºÃ¶¨Î»£¬¶øÇÒÊÊÓ¦Çé¿öÓĞÏŞ£¬¶øÇÒ¶ÔÓÚ³ÌĞòÖ´ĞĞÕßÊÇ·ñ¹Ø×¢ĞèÒª·ÖÇé¿öÌÖÂÛ£©
-			 * Ôø¾­µÄ·½·¨ÊÇ£º
-			 * String followNumber = driver.findElement(By.tagName("strong")).getText(); //¶¨Î»×ÜÈËÊı
-			 * while(follow.size() + unfollow.size() < Integer.parseInt(followNumber)-1) { //³ÌĞòÖ´ĞĞÕß¿ÉÄÜÔÚ¹Ø×¢ÕßÖ®ÖĞ
+			 * å¦‚æœä¸‹æ‹‰ä¸‰æ¬¡æ»šåŠ¨æ¡ï¼Œæ²¡æœ‰å˜åŒ–å°±åœæ­¢å¾ªç¯ï¼Œè¯¥æ–¹æ³•ä¸ç”¨å®šä½é¡µé¢ä¸Šçš„ä¸€äº›å‚è€ƒå€¼ï¼ˆè¿™äº›å€¼ä¸å¤ªå¥½å®šä½ï¼Œè€Œä¸”é€‚åº”æƒ…å†µæœ‰é™ï¼Œè€Œä¸”å¯¹äºç¨‹åºæ‰§è¡Œè€…æ˜¯å¦å…³æ³¨éœ€è¦åˆ†æƒ…å†µè®¨è®ºï¼‰
+			 * æ›¾ç»çš„æ–¹æ³•æ˜¯ï¼š
+			 * String followNumber = driver.findElement(By.tagName("strong")).getText(); //å®šä½æ€»äººæ•°
+			 * while(follow.size() + unfollow.size() < Integer.parseInt(followNumber)-1) { //ç¨‹åºæ‰§è¡Œè€…å¯èƒ½åœ¨å…³æ³¨è€…ä¹‹ä¸­
 			 */
 			while(duplicate < 5) {
 				if((method.equals("follow")) && (follow.size() > configParser.targets.get(i).operated_num)) {
@@ -71,7 +71,7 @@ public class Follow {
 				WebElement loadMore;
 				
 				try {
-					loadMore = driver.findElement(By.id("zh-load-more")); //Èç¹û²»´æÔÚ¸ÃÔªËØ»áÅ×³öÒì³££¬¶ø²»ÊÇÖ±½Ó·µ»Ønull
+					loadMore = driver.findElement(By.id("zh-load-more")); //å¦‚æœä¸å­˜åœ¨è¯¥å…ƒç´ ä¼šæŠ›å‡ºå¼‚å¸¸ï¼Œè€Œä¸æ˜¯ç›´æ¥è¿”å›null
 				} catch (NoSuchElementException e) {
 					loadMore = null;
 				}
@@ -81,7 +81,7 @@ public class Follow {
 					String js="var q=document.documentElement.scrollTop=document.body.scrollHeight";
 					((JavascriptExecutor)driver).executeScript(js);
 					try {
-						Thread.sleep(1000); //·ÀÖ¹¼ÓÔØ¹ıÂı
+						Thread.sleep(1000); //é˜²æ­¢åŠ è½½è¿‡æ…¢
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					} 

@@ -13,7 +13,7 @@ public class GetAllVerifyingCode {
 		
 		driver.manage().window().maximize(); //maximize the window
 
-		driver.findElement(By.linkText("µÇÂ¼")).click();
+		driver.findElement(By.linkText("ç™»å½•")).click();
 		driver.findElement(By.name("account")).sendKeys(args[0]);
 		driver.findElement(By.name("password")).sendKeys(args[1]);
 		if (driver.findElement(By.name("remember_me")).isSelected()) {

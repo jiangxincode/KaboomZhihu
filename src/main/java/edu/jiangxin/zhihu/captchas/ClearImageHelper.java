@@ -26,9 +26,9 @@ public class ClearImageHelper {
 	/**
 	 * 
 	 * @param sfile
-	 *            ĞèÒªÈ¥ÔëµÄÍ¼Ïñ
+	 *            éœ€è¦å»å™ªçš„å›¾åƒ
 	 * @param destDir
-	 *            È¥ÔëºóµÄÍ¼Ïñ±£´æµØÖ·
+	 *            å»å™ªåçš„å›¾åƒä¿å­˜åœ°å€
 	 * @throws IOException
 	 */
 	public static void cleanImage(File sfile, String destDir) throws IOException {
@@ -41,12 +41,12 @@ public class ClearImageHelper {
 		int height = bufferedImage.getHeight();
 		int width = bufferedImage.getWidth();
 
-		// »Ò¶È»¯
+		// ç°åº¦åŒ–
 		int[][] gray = new int[width][height];
 		for (int x = 0; x < width; x++) {
 			for (int y = 0; y < height; y++) {
 				int argb = bufferedImage.getRGB(x, y);
-				// Í¼Ïñ¼ÓÁÁ£¨µ÷ÕûÁÁ¶ÈÊ¶±ğÂÊ·Ç³£¸ß£©
+				// å›¾åƒåŠ äº®ï¼ˆè°ƒæ•´äº®åº¦è¯†åˆ«ç‡éå¸¸é«˜ï¼‰
 				int r = (int) (((argb >> 16) & 0xFF) * 1.1 + 30);
 				int g = (int) (((argb >> 8) & 0xFF) * 1.1 + 30);
 				int b = (int) (((argb >> 0) & 0xFF) * 1.1 + 30);
@@ -64,7 +64,7 @@ public class ClearImageHelper {
 			}
 		}
 
-		// ¶şÖµ»¯
+		// äºŒå€¼åŒ–
 		int threshold = ostu(gray, width, height);
 		BufferedImage binaryBufferedImage = new BufferedImage(width, height, BufferedImage.TYPE_BYTE_BINARY);
 		for (int x = 0; x < width; x++) {
@@ -80,7 +80,7 @@ public class ClearImageHelper {
 			}
 		}
 
-		// ¾ØÕó´òÓ¡
+		// çŸ©é˜µæ‰“å°
 		for (int y = 0; y < height; y++) {
 			for (int x = 0; x < width; x++) {
 				if (isBlack(binaryBufferedImage.getRGB(x, y))) {

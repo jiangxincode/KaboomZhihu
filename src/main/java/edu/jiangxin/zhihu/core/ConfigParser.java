@@ -13,16 +13,16 @@ import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
 /**
- * ÅäÖÃ½âÎöÆ÷
+ * é…ç½®è§£æå™¨
  * @author Aloys
  * 
  */
 public class ConfigParser {
 
-	public String cookiePath; //CookieĞÅÏ¢±£´æÂ·¾¶
-	public String username; //ÓÃ»§Ãû
-	public String password; //ÃÜÂë
-	public List<TargetConfig> targets; //ÈÎÎñÁĞ±í
+	public String cookiePath; //Cookieä¿¡æ¯ä¿å­˜è·¯å¾„
+	public String username; //ç”¨æˆ·å
+	public String password; //å¯†ç 
+	public List<TargetConfig> targets; //ä»»åŠ¡åˆ—è¡¨
 	
 	String configPath = null;
 	

@@ -10,12 +10,12 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 public class GetRecommendationList {
-	public String question;// ÎÊÌâ
-	public String questionDescription;// ÎÊÌâÃèÊö
-	public String zhihuUrl;// Á´½ÓµØÖ·
-	public ArrayList<String> answers;// »Ø´ğ
+	public String question;// é—®é¢˜
+	public String questionDescription;// é—®é¢˜æè¿°
+	public String zhihuUrl;// é“¾æ¥åœ°å€
+	public ArrayList<String> answers;// å›ç­”
 
-	// »ñÈ¡ÖªºõÄÚÈİ
+	// è·å–çŸ¥ä¹å†…å®¹
 	public GetRecommendationList(String url) {
 		question = "";
 		questionDescription = "";
@@ -24,19 +24,19 @@ public class GetRecommendationList {
 
 		if (getRealUrl(url)) {
 
-			// »ñÈ¡ÍÆ¼öÄÚÈİÏêÏ¸Ò³Ãæ
+			// è·å–æ¨èå†…å®¹è¯¦ç»†é¡µé¢
 			String content = GetUrlContent.getContent(zhihuUrl);
 			if (content != null) {
 				Document doc = Jsoup.parse(content);
-				// »ñÈ¡±êÌâ£¬¼´ÓÃ»§·¢²¼µÄÎÊÌâ
+				// è·å–æ ‡é¢˜ï¼Œå³ç”¨æˆ·å‘å¸ƒçš„é—®é¢˜
 				question = doc.title();
 
-				// ÎÊÌâÏûÏ¢±êÊé
+				// é—®é¢˜æ¶ˆæ¯æ ‡ä¹¦
 				Element despElement = doc.getElementById("zh-question-detail");
 				if (despElement != null) {
 					questionDescription = despElement.text();
 				}
-				// ½â´ğ
+				// è§£ç­”
 				Elements ansItems = doc.getElementsByClass("zm-item-answer");
 				for (Element ansItem : ansItems) {
 					Element textElement = ansItem.getElementsByClass("zm-item-rich-text").first();
@@ -52,8 +52,8 @@ public class GetRecommendationList {
 
 	//
 	boolean getRealUrl(String url) {
-		// ½«http://www.zhihu.com/question/22355264/answer/21102139
-		// ×ª»»Îªhttp://www.zhihu.com/question/22355264
+		// å°†http://www.zhihu.com/question/22355264/answer/21102139
+		// è½¬æ¢ä¸ºhttp://www.zhihu.com/question/22355264
 		Pattern pattern = Pattern.compile("question/(.*?)/");
 		Matcher matcher = pattern.matcher(url);
 		if (matcher.find()) {
@@ -65,16 +65,16 @@ public class GetRecommendationList {
 	}
 
 	public String writeString() {
-		// ½«htmlÒ³Ãæ×ª»»Îª×Ö·û´®
+		// å°†htmlé¡µé¢è½¬æ¢ä¸ºå­—ç¬¦ä¸²
 		String result = "";
-		result += "ÎÊÌâ£º" + question + "\r\n";
-		result += "ÃèÊö£º" + questionDescription + "\r\n";
-		result += "Á´½Ó£º" + zhihuUrl + "\r\n\r\n";
+		result += "é—®é¢˜ï¼š" + question + "\r\n";
+		result += "æè¿°ï¼š" + questionDescription + "\r\n";
+		result += "é“¾æ¥ï¼š" + zhihuUrl + "\r\n\r\n";
 		for (int i = 0; i < answers.size(); i++) {
-			result += "»Ø´ğ" + i + "£º" + answers.get(i) + "\r\n\r\n\r\n";
+			result += "å›ç­”" + i + "ï¼š" + answers.get(i) + "\r\n\r\n\r\n";
 		}
 		result += "\r\n\r\n\r\n\r\n\r\n\r\n";
-		// Ìæ»»html»»ĞĞ·ûºÍÆäËû×Ö·û
+		// æ›¿æ¢htmlæ¢è¡Œç¬¦å’Œå…¶ä»–å­—ç¬¦
 		result = result.replaceAll("<br>", "\r\n");
 		result = result.replaceAll("<.*?>", "");
 		return result;
@@ -83,10 +83,10 @@ public class GetRecommendationList {
 	@Override
 	public String toString() {
 		String result = "";
-		result += "ÎÊÌâ£º" + question + "\n";
-		result += "ÃèÊö£º" + questionDescription + "\n";
-		result += "Á´½Ó£º" + zhihuUrl + "\n";
-		result += "»Ø´ğ£º" + answers.size() + "\n";
+		result += "é—®é¢˜ï¼š" + question + "\n";
+		result += "æè¿°ï¼š" + questionDescription + "\n";
+		result += "é“¾æ¥ï¼š" + zhihuUrl + "\n";
+		result += "å›ç­”ï¼š" + answers.size() + "\n";
 		return result;
 	}
 }
