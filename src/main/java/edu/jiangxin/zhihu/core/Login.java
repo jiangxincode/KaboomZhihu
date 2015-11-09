@@ -4,26 +4,61 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Unmarshaller;
+
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Cookie;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class Login {
+	
+	private static final Logger LOGGER = Logger.getLogger(Login.class);
+	
 	public static void main(String[] args) {
-
-		ConfigParser configParser = new ConfigParser();
-		configParser.paser();
 		
-		WebDriver driver = new FirefoxDriver();
+		String configPath = null;
+		
+		if(args.length == 0) {
+			configPath = "config.xml";
+		} else {
+			configPath = args[0];
+		}
+		
+		File file = new File(configPath);
+		
+		if(!(file.isFile() && file.exists())) {
+			LOGGER.error("Configuation file doesn't exist.");
+			return;
+		}
+		
+		Config config = null;
+        JAXBContext jaxbContext = null;
+		try {
+			jaxbContext = JAXBContext.newInstance(Config.class);
+			Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+	        config = (Config) jaxbUnmarshaller.unmarshal(file);
+		} catch (JAXBException e2) {
+			LOGGER.error("Can't parser the Configuration file");
+			return;
+		}
+		
+		WebDriver driver = WebDriverWrapper.getInstance(config);
+		
+		if(driver == null) {
+			LOGGER.error("Unsupported Browser");
+			return;
+		}
 		
 		driver.get("http://www.zhihu.com");
 		
 		driver.manage().window().maximize(); //maximize the window
 
 		driver.findElement(By.linkText("登录")).click();
-		driver.findElement(By.name("account")).sendKeys(configParser.username);
-		driver.findElement(By.name("password")).sendKeys(configParser.password);
+		driver.findElement(By.name("account")).sendKeys(config.getUser().getUsername());
+		driver.findElement(By.name("password")).sendKeys(config.getUser().getPassword());
 		if (driver.findElement(By.name("remember_me")).isSelected()) {
 			driver.findElement(By.name("remember_me")).click();
 		}
@@ -44,7 +79,7 @@ public class Login {
 			}
 		}
 
-		File cookieFile = new File(configParser.cookiePath);
+		File cookieFile = new File(config.getCookie().getPath());
 		
 		driver.close();
 

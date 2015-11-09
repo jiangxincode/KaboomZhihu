@@ -26,6 +26,8 @@ public class ConfigTest {
 	
 	@Test
 	public void testParser01() {
+		assertEquals("edge", config.getBrowser().getType());
+		assertEquals("20.10240", config.getBrowser().getVersion());
 		assertEquals("tmp\\Cookie\\cookie.txt", config.getCookie().getPath());
 		assertEquals("dfjlsdajfsfvn", config.getUser().getUsername());
 		assertEquals("vkasdfjlsd", config.getUser().getPassword());

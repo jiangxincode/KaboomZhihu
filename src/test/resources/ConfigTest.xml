@@ -1,38 +1,44 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <config>
-    <cookie>
-        <path>tmp\Cookie\cookie.txt</path>
-    </cookie>
 
-    <user>
-        <username>dfjlsdajfsfvn</username>
-        <password>vkasdfjlsd</password>
-    </user>
+	<browser>
+		<type>edge</type>
+		<version>20.10240</version>
+	</browser>
+	
+	<cookie>
+		<path>tmp\Cookie\cookie.txt</path>
+	</cookie>
 
-    <targets>
-        <target>
-            <method>unfollow</method>
-            <url>http://www.zhihu.com/topic/19627873/followers</url>
-        </target>
-        <target>
-            <method>unfollow</method>
-            <url>http://www.zhihu.com/question/19644659/followers</url>
-        </target>
-        <target>
-            <method>unfollow</method>
-            <url>http://www.zhihu.com/people/YenvY/followees</url>
-        </target>
-        <target>
-            <method>unfollow</method>
-            <url>http://www.zhihu.com/people/YenvY/followers</url>
-        </target>
-        <target>
-            <method>unfollow</method>
-            <url>http://www.zhihu.com/people/qu-yiming/columns/followed</url>
-        </target>
-        <target>
-            <method>unfollow</method>
-            <url>http://www.zhihu.com/people/qu-yiming/topics</url>
-        </target>
-    </targets>
+	<user>
+		<username>dfjlsdajfsfvn</username>
+		<password>vkasdfjlsd</password>
+	</user>
+
+	<targets>
+		<target>
+			<method>unfollow</method>
+			<url>http://www.zhihu.com/topic/19627873/followers</url>
+		</target>
+		<target>
+			<method>unfollow</method>
+			<url>http://www.zhihu.com/question/19644659/followers</url>
+		</target>
+		<target>
+			<method>unfollow</method>
+			<url>http://www.zhihu.com/people/YenvY/followees</url>
+		</target>
+		<target>
+			<method>unfollow</method>
+			<url>http://www.zhihu.com/people/YenvY/followers</url>
+		</target>
+		<target>
+			<method>unfollow</method>
+			<url>http://www.zhihu.com/people/qu-yiming/columns/followed</url>
+		</target>
+		<target>
+			<method>unfollow</method>
+			<url>http://www.zhihu.com/people/qu-yiming/topics</url>
+		</target>
+	</targets>
 </config>

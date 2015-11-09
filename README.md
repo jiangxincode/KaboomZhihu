@@ -33,6 +33,10 @@ Some small programs of Zhihu.
 + Use the maven to reconstruct the project. [20150804]
 + Unify the character encoding of all files to GBK. [20150805]
 + Add the function of crawler. [20150818]
++ Use the JAXB to simplify the process of parser xml. [20151109]
++ Update the version of selenium to the latest version. [20151109]
++ Add the interface to match some other browsers than firefox. [20151109]
+
 
 ## Snapshot
 
@@ -49,6 +53,8 @@ Some small programs of Zhihu.
 + Use the schema to replace the dtd file.
 + Solve the problem of uncorrect cookie setting in httpclient.
 + Use multithreading in the crawler.
++ Test for validation.(multibrowsers support)
+
 
 ## Contributing
 

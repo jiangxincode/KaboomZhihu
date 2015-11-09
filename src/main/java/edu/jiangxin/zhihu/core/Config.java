@@ -9,12 +9,23 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement(name = "config")
 public class Config {
 
+	private Browser browser; //浏览器信息
+	
 	private Cookie cookie; //Cookie信息保存路径
 	
 	private User user; //用户名
 	
 	private List<Target> targets; //任务列表
 	
+	public Browser getBrowser() {
+		return browser;
+	}
+
+	@XmlElement
+	public void setBrowser(Browser browser) {
+		this.browser = browser;
+	}
+
 	public Cookie getCookie() {
 		return cookie;
 	}
@@ -42,6 +53,5 @@ public class Config {
 	public void setTargets(List<Target> targets) {
 		this.targets = targets;
 	}
-	
 	
 }
