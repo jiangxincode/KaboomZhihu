@@ -1,20 +1,32 @@
 package edu.jiangxin.zhihu.crawler;
 
+import org.apache.log4j.Logger;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-import edu.jiangxin.zhihu.core.ConfigParser;
+
+import edu.jiangxin.zhihu.core.Config;
+import edu.jiangxin.zhihu.core.ConfigUtils;
+import edu.jiangxin.zhihu.core.Follow;
 
 public class UserCrawler {
+	
+	private static final Logger LOGGER = Logger.getLogger(Follow.class);
 
 	public static void main(String[] args) {
 
-		ConfigParser configParser = new ConfigParser();
-		configParser.paser();
+		Config config = ConfigUtils.getConfig();
+
+		if (config == null) {
+			LOGGER.error("Can't find the configuation file.");
+			return;
+		}
 		
-		for (int i = 0; i < configParser.targets.size(); i++) {
-			if (configParser.targets.get(i).method.equals("users")) {
+		
+		for (int i = 0; i < config.getTargets().size(); i++) {
+
+			if (config.getTargets().get(i).getMethod().equals("users")) {
 				//String savePath = configParser.targets.get(i).path;
 
 				LinkQueue.addUnvisitedUrl("http://www.zhihu.com/people/jiangxinnju/followers");

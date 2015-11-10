@@ -2,14 +2,19 @@ package edu.jiangxin.zhihu.crawler;
 
 import java.util.ArrayList;
 
+import org.apache.log4j.Logger;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import edu.jiangxin.zhihu.core.ConfigParser;
+import edu.jiangxin.zhihu.core.Config;
+import edu.jiangxin.zhihu.core.ConfigUtils;
+import edu.jiangxin.zhihu.core.Follow;
 
 public class RecommendationCrawler {
+	
+	private static final Logger LOGGER = Logger.getLogger(Follow.class);
 
 	// 获取推荐内容详细内容url
 	public static ArrayList<GetRecommendationList> GetRecommendations(String content) {
@@ -28,11 +33,18 @@ public class RecommendationCrawler {
 
 	public static void main(String[] args) {
 
-		ConfigParser configParser = new ConfigParser();
-		configParser.paser();
-		for (int i = 0; i < configParser.targets.size(); i++) {
-			if (configParser.targets.get(i).method.equals("recommendations")) {
-				String savePath = configParser.targets.get(i).path;
+		Config config = ConfigUtils.getConfig();
+
+		if (config == null) {
+			LOGGER.error("Can't find the configuation file.");
+			return;
+		}
+		
+		for (int i = 0; i < config.getTargets().size(); i++) {
+			String method = config.getTargets().get(i).getMethod();
+			String path = config.getTargets().get(i).getPath();
+			if (method.equals("recommendations")) {
+				String savePath = path;
 				String content = GetUrlContent.getContent("http://www.zhihu.com/explore/recommendations"); // 获取知乎推荐首页
 				ArrayList<GetRecommendationList> list = RecommendationCrawler.GetRecommendations(content); // 获取推荐内容详细内容
 				for (GetRecommendationList zhihu : list) { // 写入文档

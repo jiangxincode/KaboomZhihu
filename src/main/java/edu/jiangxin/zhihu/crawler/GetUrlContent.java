@@ -16,20 +16,29 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.impl.cookie.BasicClientCookie;
 import org.apache.http.util.EntityUtils;
+import org.apache.log4j.Logger;
 
-import edu.jiangxin.zhihu.core.ConfigParser;
+import edu.jiangxin.zhihu.core.Config;
+import edu.jiangxin.zhihu.core.ConfigUtils;
+import edu.jiangxin.zhihu.core.Follow;
 
 public class GetUrlContent {
+	
+	private static final Logger LOGGER = Logger.getLogger(Follow.class);
 	
 	@SuppressWarnings("deprecation")
 	public static String getContent(String url) {
 		
-		ConfigParser configParser = new ConfigParser();
-		configParser.paser();
+		Config config = ConfigUtils.getConfig();
+
+		if (config == null) {
+			LOGGER.error("Can't find the configuation file.");
+			return null;
+		}
 		
 	    CookieStore cookieStore = new BasicCookieStore();
 	    
-	    File cookieFile = new File(configParser.cookiePath);
+	    File cookieFile = new File(config.getCookie().getPath());
         FileReader fr = null;
 		try {
 			fr = new FileReader(cookieFile);

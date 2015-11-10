@@ -1,12 +1,7 @@
 package edu.jiangxin.zhihu.core;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.List;
-
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Unmarshaller;
 
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
@@ -22,37 +17,16 @@ public class Follow {
 
 	public static void main(String[] args) {
 
-		//ConfigParser configParser = new ConfigParser();
-		//configParser.paser();
-
 		//Logger logger = Logger.getRootLogger();
 		//DOMConfigurator.configure("log4j.xml");
 
-		String configPath = null;
+		Config config = ConfigUtils.getConfig();
 
-		if (args.length == 0) {
-			configPath = "config.xml";
-		} else {
-			configPath = args[0];
-		}
-
-		File file = new File(configPath);
-
-		if (!(file.isFile() && file.exists())) {
-			LOGGER.error("Configuation file doesn't exist.");
+		if (config == null) {
+			LOGGER.error("Can't find the configuation file.");
 			return;
 		}
-
-		Config config = null;
-		JAXBContext jaxbContext = null;
-		try {
-			jaxbContext = JAXBContext.newInstance(Config.class);
-			Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-			config = (Config) jaxbUnmarshaller.unmarshal(file);
-		} catch (JAXBException e2) {
-			LOGGER.error("Can't parser the Configuration file");
-			return;
-		}
+		
 		WebDriver driver = WebDriverWrapper.getInstance(config);
 
 		if (driver == null) {

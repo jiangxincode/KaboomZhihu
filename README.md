@@ -36,6 +36,7 @@ Some small programs of Zhihu.
 + Use the JAXB to simplify the process of parser xml. [20151109]
 + Update the version of selenium to the latest version. [20151109]
 + Add the interface to match some other browsers than firefox. [20151109]
++ Delete the old methods for parsing the configuation. [20151110]
 
 
 ## Snapshot
@@ -54,6 +55,7 @@ Some small programs of Zhihu.
 + Solve the problem of uncorrect cookie setting in httpclient.
 + Use multithreading in the crawler.
 + Test for validation.(multibrowsers support)
++ Recognize the log, and upgrade the log from 1 to 2.
 
 
 ## Contributing

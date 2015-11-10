@@ -4,10 +4,6 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Unmarshaller;
-
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Cookie;
@@ -19,29 +15,10 @@ public class Login {
 	
 	public static void main(String[] args) {
 		
-		String configPath = null;
+		Config config = ConfigUtils.getConfig();
 		
-		if(args.length == 0) {
-			configPath = "config.xml";
-		} else {
-			configPath = args[0];
-		}
-		
-		File file = new File(configPath);
-		
-		if(!(file.isFile() && file.exists())) {
-			LOGGER.error("Configuation file doesn't exist.");
-			return;
-		}
-		
-		Config config = null;
-        JAXBContext jaxbContext = null;
-		try {
-			jaxbContext = JAXBContext.newInstance(Config.class);
-			Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-	        config = (Config) jaxbUnmarshaller.unmarshal(file);
-		} catch (JAXBException e2) {
-			LOGGER.error("Can't parser the Configuration file");
+		if(config == null) {
+			LOGGER.error("Can't find the configuation file.");
 			return;
 		}
 		
