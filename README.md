@@ -1,6 +1,6 @@
 # KaboomZhihu
 
-Status: [![Build Status](https://travis-ci.org/jiangxincode/KaboomZhihu.png)](https://travis-ci.org/jiangxincode/KaboomZhihu)
+[![Build Status](https://travis-ci.org/jiangxincode/KaboomZhihu.png)](https://travis-ci.org/jiangxincode/KaboomZhihu)
 
 ## Authors and Contributors
 
