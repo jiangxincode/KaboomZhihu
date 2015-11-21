@@ -1,5 +1,7 @@
 # KaboomZhihu
 
+Status: [![Build Status](https://travis-ci.org/[YOUR_GITHUB_USERNAME]/[YOUR_PROJECT_NAME].png)](https://travis-ci.org/[YOUR_GITHUB_USERNAME]/[YOUR_PROJECT_NAME])
+
 ## Authors and Contributors
 
 + JiangXin jiangxinnju@163.com
