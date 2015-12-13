@@ -71,3 +71,7 @@ Some small programs of Zhihu.
 ## License
 
 + The MIT License (MIT) http://mit-license.org/
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/jiangxincode/kaboomzhihu/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
