@@ -1,5 +1,6 @@
 .settings/
 target/
+.idea/
 tmp/
 config.xml
 *.swp
