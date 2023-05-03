@@ -2,7 +2,8 @@ package edu.jiangxin.zhihu.crawler;
 
 import java.util.ArrayList;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -13,8 +14,8 @@ import edu.jiangxin.zhihu.core.ConfigUtils;
 import edu.jiangxin.zhihu.core.Follow;
 
 public class RecommendationCrawler {
-	
-	private static final Logger LOGGER = Logger.getLogger(Follow.class);
+
+	private static final Logger LOGGER = LogManager.getLogger(Follow.class.getSimpleName());
 
 	// 获取推荐内容详细内容url
 	public static ArrayList<GetRecommendationList> GetRecommendations(String content) {

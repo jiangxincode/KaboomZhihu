@@ -16,15 +16,16 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.impl.cookie.BasicClientCookie;
 import org.apache.http.util.EntityUtils;
-import org.apache.log4j.Logger;
 
 import edu.jiangxin.zhihu.core.Config;
 import edu.jiangxin.zhihu.core.ConfigUtils;
 import edu.jiangxin.zhihu.core.Follow;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class GetUrlContent {
-	
-	private static final Logger LOGGER = Logger.getLogger(Follow.class);
+
+	private static final Logger LOGGER = LogManager.getLogger(Follow.class.getSimpleName());
 	
 	@SuppressWarnings("deprecation")
 	public static String getContent(String url) {

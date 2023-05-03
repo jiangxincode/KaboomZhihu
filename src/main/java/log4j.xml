@@ -1,17 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<!DOCTYPE log4j:configuration PUBLIC "-//APACHE//DTD LOG4J 1.2//EN" 
-    "http://logging.apache.org/log4j/1.2/apidocs/org/apache/log4j/xml/doc-files/log4j.dtd" >
-<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/"
-    threshold="warn" debug="true">
-    <!-- 控制台 -->
-    <appender name="console.CONSOLE" class="org.apache.log4j.ConsoleAppender">
-        <param name="threshold" value="debug" />
-        <layout class="org.apache.log4j.SimpleLayout" />
-    </appender>
- 
-    <root>
-        <level value="debug" />
-        <appender-ref ref="console.CONSOLE" />
-    </root>
-</log4j:configuration>
+<Configuration status="INFO">
+    <Appenders>
+        <File name="File"
+              fileName="kaboomzhihu.log"
+              append="true">
+            <PatternLayout
+                    pattern="%d{DEFAULT} [%t] %-5level %logger{36} - %msg%n"/>
+        </File>
+        <Console name="STDOUT" target="SYSTEM_OUT">
+            <PatternLayout
+                    pattern="%d{DEFAULT} [%t] %-5level %logger{36} - %msg%n"/>
+        </Console>
+    </Appenders>
+    <Loggers>
+        <Root level="info">
+            <AppenderRef ref="STDOUT"/>
+            <AppenderRef ref="File"/>
+        </Root>
+    </Loggers>
+</Configuration>
