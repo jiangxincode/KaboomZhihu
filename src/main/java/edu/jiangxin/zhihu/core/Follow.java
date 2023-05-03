@@ -7,15 +7,19 @@ import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Cookie;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.internal.Locatable;
+import org.openqa.selenium.support.FindBy;
 
 public class Follow {
 
 	private static final Logger LOGGER = Logger.getLogger(Follow.class);
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InterruptedException {
 
 		//Logger logger = Logger.getRootLogger();
 		//DOMConfigurator.configure("log4j.xml");
@@ -26,7 +30,7 @@ public class Follow {
 			LOGGER.error("Can't find the configuation file.");
 			return;
 		}
-		
+
 		WebDriver driver = WebDriverWrapper.getInstance(config);
 
 		if (driver == null) {
@@ -109,14 +113,26 @@ public class Follow {
 						+ duplicate + "]");
 			}
 
+
 			if (method.equals("follow")) {
 				for (WebElement we : follow) {
-					we.click();
+					System.out.println("after sleep");
+
+					((Locatable) we).getCoordinates().inViewPort();
+				    try {
+				    	we.click();
+				    } catch (Exception e) {
+				    	new Actions(driver).sendKeys(Keys.HOME).perform();
+				        new Actions(driver).sendKeys(Keys.PAGE_DOWN).perform();
+				        we.click();
+				    }
+
 					operated_num++;
 					if (operated_num >= config.getTargets().get(i).getOperated_num()) {
 						break;
 					}
 				}
+
 			} else if (method.equals("unfollow")) {
 				for (WebElement we : unfollow) {
 					we.click();
