@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE config SYSTEM "config.dtd">
+<config>
+
+	<browser>
+		<type>firefox</type>
+		<version>20.10240</version>
+	</browser>
+
+	<cookie>
+		<path>tmp\Cookie\cookie.txt</path>
+	</cookie>
+
+	<user>
+		<username>xxxx</username>
+		<password>xxxx</password>
+	</user>
+
+	<targets>
+		<target>
+			<method>follow</method>
+			<url>https://www.zhihu.com/people/lin-bin-51/followees</url>
+			<number>1000</number>
+			<!-- <shutdown>true</shutdown> -->
+			<!-- <remain>426</remain> -->
+		</target>
+		<!-- <target>
+			<method>recommendations</method>
+			<path>tmp\Recommendations\recommendations.txt</path>
+		</target>
+		<target>
+			<method>users</method>
+			<path>tmp\Users\users.txt</path>
+		</target> -->
+	</targets>
+</config>
