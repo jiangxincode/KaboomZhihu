@@ -1,7 +1,6 @@
 # KaboomZhihu
 
 [![Build and Release](https://github.com/jiangxincode/KaboomZhihu/actions/workflows/BuildAndRelease.yml/badge.svg)](https://github.com/jiangxincode/KaboomZhihu/actions/workflows/BuildAndRelease.yml)
-[![Coverage Status](https://coveralls.io/repos/jiangxincode/KaboomZhihu/badge.svg?branch=master&service=github)](https://coveralls.io/github/jiangxincode/KaboomZhihu?branch=master)
 
 ## Authors and Contributors
 
